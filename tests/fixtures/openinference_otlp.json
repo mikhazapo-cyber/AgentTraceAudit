@@ -1,0 +1,97 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          { "key": "service.name", "value": { "stringValue": "deep-research-agent" } }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": { "name": "openinference.instrumentation.smolagents" },
+          "spans": [
+            {
+              "spanId": "aaaa0001",
+              "traceId": "trace-fixture-1",
+              "name": "AgentRun",
+              "startTimeUnixNano": "1000",
+              "attributes": [
+                { "key": "openinference.span.kind", "value": { "stringValue": "AGENT" } },
+                { "key": "input.value", "value": { "stringValue": "How many moons does Mars have, and what are they called?" } }
+              ]
+            },
+            {
+              "spanId": "aaaa0002",
+              "traceId": "trace-fixture-1",
+              "name": "ChatCompletion",
+              "startTimeUnixNano": "2000",
+              "attributes": [
+                { "key": "openinference.span.kind", "value": { "stringValue": "LLM" } },
+                { "key": "llm.model_name", "value": { "stringValue": "o3-mini-2025-01-31" } },
+                { "key": "llm.input_messages.0.message.role", "value": { "stringValue": "system" } },
+                { "key": "llm.input_messages.0.message.content", "value": { "stringValue": "Answer only from tool results. Always cite the tool you used." } },
+                { "key": "llm.input_messages.1.message.role", "value": { "stringValue": "user" } },
+                { "key": "llm.input_messages.1.message.content", "value": { "stringValue": "How many moons does Mars have, and what are they called?" } },
+                { "key": "llm.output_messages.0.message.role", "value": { "stringValue": "assistant" } },
+                { "key": "llm.output_messages.0.message.content", "value": { "stringValue": "I will search for the moons of Mars." } },
+                { "key": "llm.output_messages.0.message.tool_calls.0.tool_call.id", "value": { "stringValue": "call_1" } },
+                { "key": "llm.output_messages.0.message.tool_calls.0.tool_call.function.name", "value": { "stringValue": "web_search" } },
+                { "key": "llm.output_messages.0.message.tool_calls.0.tool_call.function.arguments", "value": { "stringValue": "{\"query\": \"moons of Mars\"}" } },
+                { "key": "llm.tools.0.tool.json_schema", "value": { "stringValue": "{\"name\": \"web_search\", \"description\": \"Search the web\", \"parameters\": {\"type\": \"object\", \"properties\": {\"query\": {\"type\": \"string\"}}}}" } },
+                { "key": "llm.tools.1.tool.json_schema", "value": { "stringValue": "{\"name\": \"calculator\", \"description\": \"Evaluate arithmetic\", \"parameters\": {\"type\": \"object\", \"properties\": {\"expr\": {\"type\": \"string\"}}}}" } },
+                { "key": "llm.token_count.prompt", "value": { "intValue": 412 } }
+              ]
+            },
+            {
+              "spanId": "aaaa0003",
+              "traceId": "trace-fixture-1",
+              "name": "web_search",
+              "startTimeUnixNano": "3000",
+              "attributes": [
+                { "key": "openinference.span.kind", "value": { "stringValue": "TOOL" } },
+                { "key": "tool.name", "value": { "stringValue": "web_search" } },
+                { "key": "tool.description", "value": { "stringValue": "Search the web" } },
+                { "key": "tool.call.id", "value": { "stringValue": "call_1" } },
+                { "key": "input.value", "value": { "stringValue": "{\"query\": \"moons of Mars\"}" } },
+                { "key": "output.value", "value": { "stringValue": "Mars has two moons: Phobos and Deimos." } }
+              ]
+            },
+            {
+              "spanId": "aaaa0004",
+              "traceId": "trace-fixture-1",
+              "name": "calculator",
+              "startTimeUnixNano": "4000",
+              "status": { "code": 2, "message": "ValueError: could not parse expression" },
+              "attributes": [
+                { "key": "openinference.span.kind", "value": { "stringValue": "TOOL" } },
+                { "key": "tool.name", "value": { "stringValue": "calculator" } },
+                { "key": "input.value", "value": { "stringValue": "{\"expr\": \"two\"}" } },
+                { "key": "output.value", "value": { "stringValue": "ValueError: could not parse expression" } }
+              ]
+            },
+            {
+              "spanId": "aaaa0005",
+              "traceId": "trace-fixture-1",
+              "name": "ChatCompletion",
+              "startTimeUnixNano": "5000",
+              "attributes": [
+                { "key": "openinference.span.kind", "value": { "stringValue": "LLM" } },
+                { "key": "llm.model_name", "value": { "stringValue": "o3-mini-2025-01-31" } },
+                { "key": "llm.input_messages.0.message.role", "value": { "stringValue": "system" } },
+                { "key": "llm.input_messages.0.message.content", "value": { "stringValue": "Answer only from tool results. Always cite the tool you used." } },
+                { "key": "llm.input_messages.1.message.role", "value": { "stringValue": "user" } },
+                { "key": "llm.input_messages.1.message.content", "value": { "stringValue": "How many moons does Mars have, and what are they called?" } },
+                { "key": "llm.input_messages.2.message.role", "value": { "stringValue": "assistant" } },
+                { "key": "llm.input_messages.2.message.content", "value": { "stringValue": "I will search for the moons of Mars." } },
+                { "key": "llm.input_messages.3.message.role", "value": { "stringValue": "tool" } },
+                { "key": "llm.input_messages.3.message.content", "value": { "stringValue": "Mars has two moons: Phobos and Deimos." } },
+                { "key": "llm.output_messages.0.message.role", "value": { "stringValue": "assistant" } },
+                { "key": "llm.output_messages.0.message.content", "value": { "stringValue": "Mars has three moons: Phobos, Deimos and Nerio." } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

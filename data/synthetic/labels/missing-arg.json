@@ -1,0 +1,14 @@
+{
+  "trace_id": "missing-arg",
+  "clean": false,
+  "split": "synthetic",
+  "findings": [
+    {
+      "family": "incorrect_tool_use",
+      "steps": [1, 2],
+      "description": "message(action=react) called without required messageId; tool returned 'messageId required'.",
+      "severity": "minor"
+    }
+  ],
+  "annotator": "synthetic fixture"
+}

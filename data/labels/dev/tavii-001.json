@@ -1,0 +1,8 @@
+{
+  "trace_id": "tavii-001",
+  "clean": true,
+  "findings": [],
+  "notes": "search-dispatch skill followed: read skill, checked Slack-visible context before saved searches, used returned strategyRef 'general_strategy', dispatched once with hardConstraints encoding mandatory Sao Paulo/Rio + <=15y criteria, callbackThreadId matches topic_id, NO_REPLY after acknowledgementSent=true.",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

@@ -1,0 +1,14 @@
+{
+  "trace_id": "contradict",
+  "clean": false,
+  "split": "synthetic",
+  "findings": [
+    {
+      "family": "evidence_contradiction",
+      "steps": [2, 3],
+      "description": "Final answer claims 28°C and sunny; get_weather returned temp_c 12 and cloudy.",
+      "severity": "major"
+    }
+  ],
+  "annotator": "synthetic fixture"
+}

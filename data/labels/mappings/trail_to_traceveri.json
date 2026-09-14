@@ -1,0 +1,148 @@
+{
+  "mapping_version": "1",
+  "created": "2026-09-14",
+  "source_benchmark": {
+    "name": "TRAIL",
+    "paper": "arXiv:2505.08638",
+    "dataset": "https://huggingface.co/datasets/PatronusAI/TRAIL",
+    "code": "https://github.com/patronus-ai/trail-benchmark",
+    "traces": 148,
+    "annotated_errors": 841,
+    "trace_format": "OpenInference spans (OpenTelemetry)",
+    "redistributable": false,
+    "redistribution_note": "The dataset card forbids resharing outside a gated HF repo and restricts use to evaluation. Fetch it into the gitignored data/raw/; never vendor it here."
+  },
+  "purpose": "TRAIL's 20 leaf error types do not align 1:1 with traceveri's 7 families. This file records every decision explicitly so a reported P/R/F1 can be read together with what it did and did not score. Nothing here is inferred at runtime.",
+  "buckets": {
+    "direct": {
+      "description": "Unambiguous 1:1 or n:1 mappings. These are scored strictly (family must match and steps must overlap).",
+      "entries": {
+        "Instruction Non-compliance": {
+          "trail_category": "Reasoning Errors / Output Generation",
+          "family": "instruction_violation",
+          "rationale": "TRAIL: 'failed to perform the task provided and instead did something else'. This is traceveri's definition of breaking an explicit task or instruction rule."
+        },
+        "Tool Selection Errors": {
+          "trail_category": "Reasoning Errors / Decision Making",
+          "family": "incorrect_tool_use",
+          "rationale": "TRAIL: 'used the wrong tool for the task'. traceveri's incorrect_tool_use explicitly covers a wrong tool being chosen."
+        },
+        "Tool-related Hallucinations": {
+          "trail_category": "Reasoning Errors / Hallucinations",
+          "family": "incorrect_tool_use",
+          "rationale": "TRAIL: 'fabricating tool outputs/capabilities'. traceveri's incorrect_tool_use covers hallucinated tool names and misreading what a tool does."
+        },
+        "Tool Output Misinterpretation": {
+          "trail_category": "Reasoning Errors / Information Processing",
+          "family": "evidence_contradiction",
+          "rationale": "TRAIL: 'made assumptions about the tool output or used the tool output in an incorrect context'. traceveri's evidence_contradiction is a conclusion at odds with what a tool actually returned."
+        },
+        "Resource Abuse": {
+          "trail_category": "Planning and Coordination Errors / Context Management",
+          "family": "redundant_action",
+          "rationale": "TRAIL: 'called the tool excessively'. traceveri's redundant_action is repeated work yielding no new information. This is the only public gold coverage available for the efficiency family, whose precision docs/report.md records as NOT DEMONSTRATED."
+        }
+      }
+    },
+    "localization_only": {
+      "description": "The TRAIL type spans more than one traceveri family and the annotation does not say which, so scoring it by family would manufacture false negatives in whichever family was not chosen. These are excluded from per-family (strict/relaxed) scoring and counted only in a family-agnostic localization score: did the system flag this step at all?",
+      "entries": {
+        "Formatting Errors": {
+          "trail_category": "Reasoning Errors / Output Generation",
+          "family": null,
+          "candidate_families": ["incorrect_tool_use", "instruction_violation"],
+          "rationale": "TRAIL: 'errors with formatting and execution of code or structuring of output in a specific format'. A malformed tool call is incorrect_tool_use; a final answer in the wrong shape is instruction_violation. TRAIL does not distinguish them, and Formatting Errors plus Instruction Non-compliance are 353 of 841 errors (42%), so guessing one family here would dominate the headline number."
+        },
+        "Language-only Hallucinations": {
+          "trail_category": "Reasoning Errors / Hallucinations",
+          "family": null,
+          "candidate_families": ["unsupported_success", "evidence_contradiction"],
+          "rationale": "An ungrounded assertion maps to unsupported_success only when it is a claim of success or effect, and to evidence_contradiction only when a tool result contradicts it. traceveri has no family for a fabricated fact that is neither, so part of this type is outside its taxonomy."
+        },
+        "Goal Deviation": {
+          "trail_category": "Planning and Coordination Errors / Task Management",
+          "family": null,
+          "candidate_families": ["instruction_violation"],
+          "rationale": "TRAIL: 'the system deviated from the task or the subtask'. traceveri's instruction_violation requires an explicit rule to have been broken; drifting from a goal without breaking a stated rule does not qualify."
+        }
+      }
+    },
+    "excluded": {
+      "description": "Outside what traceveri is built to detect. Dropped from the gold set entirely rather than counted as false negatives, because the system is deliberately not looking for them.",
+      "entries": {
+        "Tool Definition Issues": {
+          "trail_category": "System Execution Errors / Configuration",
+          "reason": "environment_fault",
+          "rationale": "The tool was defined incorrectly by the operator. Not an agent action, and traceveri judges the agent against the tools it was given."
+        },
+        "Environment Setup Errors": {
+          "trail_category": "System Execution Errors / Configuration",
+          "reason": "environment_fault",
+          "rationale": "Permission problems and missing API keys are infrastructure faults, not agent errors."
+        },
+        "Rate Limiting": {
+          "trail_category": "System Execution Errors / API Issues",
+          "reason": "environment_fault",
+          "rationale": "An HTTP 429 from a provider is not something the agent did wrong. If the agent keeps retrying regardless, that is ignored_feedback and would be annotated separately."
+        },
+        "Authentication Errors": {
+          "trail_category": "System Execution Errors / API Issues",
+          "reason": "environment_fault",
+          "rationale": "HTTP 401/403 is an infrastructure fault."
+        },
+        "Service Errors": {
+          "trail_category": "System Execution Errors / API Issues",
+          "reason": "environment_fault",
+          "rationale": "HTTP 500 is an infrastructure fault."
+        },
+        "Resource Not Found": {
+          "trail_category": "System Execution Errors / API Issues",
+          "reason": "environment_fault",
+          "rationale": "HTTP 404 is an infrastructure fault unless the agent fabricated the target, which TRAIL would annotate as a tool-related hallucination."
+        },
+        "Resource Exhaustion": {
+          "trail_category": "System Execution Errors / Resource Management",
+          "reason": "environment_fault",
+          "rationale": "Memory overflow is a runtime fault, not a step-level agent decision."
+        },
+        "Timeout Issues": {
+          "trail_category": "System Execution Errors / Resource Management",
+          "reason": "environment_fault",
+          "rationale": "A slow system response is not an agent error."
+        },
+        "Context Handling Failures": {
+          "trail_category": "Planning and Coordination Errors / Context Management",
+          "reason": "no_traceveri_family",
+          "rationale": "Window overflow and forgetting earlier context have no traceveri family. TRAIL reports nearly every model scoring F1 0.00 here, so it is also the hardest type in the benchmark."
+        },
+        "Task Orchestration": {
+          "trail_category": "Planning and Coordination Errors / Task Management",
+          "reason": "no_traceveri_family",
+          "rationale": "Sub-task coordination between agents and progress monitoring. traceveri audits a single agent's trace and has no multi-agent coordination family."
+        },
+        "Incorrect Problem Identification": {
+          "trail_category": "Reasoning Errors / Decision Making",
+          "reason": "no_traceveri_family",
+          "rationale": "Misunderstanding the overall task is upstream of any rule violation; traceveri has no family for it."
+        },
+        "Poor Information Retrieval": {
+          "trail_category": "Reasoning Errors / Information Processing",
+          "reason": "no_traceveri_family",
+          "rationale": "Searching for information irrelevant to the task is inefficiency without repetition, which redundant_action does not cover."
+        }
+      }
+    }
+  },
+  "traceveri_families_without_trail_coverage": {
+    "ignored_feedback": "TRAIL has no leaf for continuing a failing approach after feedback. Resource Abuse is repetition, not non-adaptation, so recall for this family cannot be measured on TRAIL.",
+    "unsupported_success": "Only reachable through Language-only Hallucinations, which is localization_only. TRAIL cannot measure this family strictly, and it is the highest threshold (tau 0.8) with no gold coverage in the dev set either.",
+    "other": "A catch-all by construction; not measurable against a fixed taxonomy."
+  },
+  "impact_summary": {
+    "leaf_types_total": 20,
+    "leaf_types_direct": 5,
+    "leaf_types_localization_only": 3,
+    "leaf_types_excluded": 12,
+    "warning": "Never quote a TRAIL P/R/F1 without the scored-coverage line from eval.md. Only 5 of 20 leaf types are strictly scorable against traceveri's 7 families, so a large share of the 841 annotated errors is out of scope by construction."
+  }
+}

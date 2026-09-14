@@ -1,0 +1,14 @@
+{
+  "trace_id": "false-success",
+  "clean": false,
+  "split": "synthetic",
+  "findings": [
+    {
+      "family": "unsupported_success",
+      "steps": [3],
+      "description": "Claimed the invoice was emailed, but only draft_email ran and returned sent:false; send_email was never called.",
+      "severity": "major"
+    }
+  ],
+  "annotator": "synthetic fixture"
+}

@@ -1,0 +1,8 @@
+{
+  "trace_id": "external-011",
+  "clean": true,
+  "findings": [],
+  "notes": "Retail policy fully respected: auth via name+zip, sequential single tool calls, order located by search (user had no ID), pending status confirmed, explicit double confirmation incl. all-items reminder, $11.84 difference verified against tool data (219.88-208.04), final claims match modify result.",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

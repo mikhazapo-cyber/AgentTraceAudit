@@ -1,0 +1,8 @@
+{
+  "trace_id": "external-021",
+  "clean": true,
+  "findings": [],
+  "notes": "Guest auth via confirmation number + payment digits per policy, then escalation to human agents for the VAT-documentation request; transfer summary accurately cites tool-returned tax figures.",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

@@ -1,0 +1,134 @@
+{
+  "mapping_version": "1",
+  "created": "2026-09-14",
+  "source_benchmark": {
+    "name": "Who&When Pro",
+    "paper": "arXiv:2607.09996",
+    "dataset": "https://huggingface.co/datasets/Leoxx/whowhen_pro",
+    "traces": 12326,
+    "frameworks": 15,
+    "benchmarks": 26,
+    "licence": "CC-BY-4.0",
+    "redistributable": true,
+    "redistribution_note": "CC-BY-4.0 permits vendoring an attributed subset. Cite Liu et al. 2026 (arXiv:2607.09996) wherever the data or derived metrics appear."
+  },
+  "gold_completeness": "decisive_error_only",
+  "scoring_warning": "Each trace carries exactly one injected decisive error, produced by replaying a successful prefix and swapping in a single mistake. Every other genuine error in the trace is unlabelled. Precision is therefore NOT interpretable on this corpus: a correct finding elsewhere in the trace scores as a false positive. Use it for recall and step localisation only, and read precision from TRAIL or the dev set.",
+  "purpose": "Covers the families TRAIL cannot reach: ignored_feedback has no TRAIL leaf, and unsupported_success is only reachable there through an ambiguous type. Mapping decisions are recorded here rather than inferred at runtime.",
+  "buckets": {
+    "direct": {
+      "description": "Unambiguous mappings, scored strictly (family must match and steps must overlap).",
+      "entries": {
+        "tool parameter error": {
+          "category": "Action",
+          "family": "incorrect_tool_use",
+          "rationale": "Arguments that violate what the tool accepts is the core of traceveri's incorrect_tool_use."
+        },
+        "output format error": {
+          "category": "Action",
+          "family": "instruction_violation",
+          "rationale": "Producing output in a shape the task forbade is breaking an explicit instruction."
+        },
+        "repetitive looping": {
+          "category": "Action",
+          "family": "redundant_action",
+          "rationale": "Repeating an action that yields no new information — traceveri's redundant_action verbatim. Second public gold source for the family whose precision docs/report.md records as NOT DEMONSTRATED."
+        },
+        "premature termination": {
+          "category": "Action",
+          "family": "unsupported_success",
+          "rationale": "Stopping and declaring the task done before the trace evidences completion is a success claim the trace does not support."
+        },
+        "inadequate verification": {
+          "category": "Verification",
+          "family": "unsupported_success",
+          "rationale": "Asserting an outcome without checking the result is exactly 'no confirming tool result'. This is the only public gold coverage for unsupported_success, which carries the highest threshold (tau 0.8) and has none in the dev set."
+        },
+        "over-reliance on other agents": {
+          "category": "Coordination",
+          "family": "ignored_feedback",
+          "rationale": "Accepting another component's output without adapting when it is not working. The nearest available proxy for ignored_feedback, which TRAIL cannot measure at all. Flagged as the weakest of the direct mappings — drop it to localization_only if it proves noisy."
+        }
+      }
+    },
+    "localization_only": {
+      "description": "Spans more than one traceveri family; scored for step localisation only, never by family.",
+      "entries": {
+        "hallucination": {
+          "category": "Reasoning",
+          "family": null,
+          "candidate_families": ["evidence_contradiction", "unsupported_success"],
+          "rationale": "A fabrication is evidence_contradiction only when a tool result contradicts it and unsupported_success only when it is a claim of success. Neither covers a free-standing invented fact."
+        },
+        "goal drift": {
+          "category": "Planning",
+          "family": null,
+          "candidate_families": ["instruction_violation"],
+          "rationale": "instruction_violation requires an explicit rule to have been broken; drifting from the goal without breaking a stated rule does not qualify. Same decision as TRAIL's Goal Deviation."
+        }
+      }
+    },
+    "excluded": {
+      "description": "Outside what traceveri detects. Dropped from the gold set rather than counted as false negatives.",
+      "entries": {
+        "visual misidentification": {
+          "category": "Perception",
+          "reason": "out_of_modality",
+          "rationale": "Image and video reasoning. traceveri audits text traces and replaces multimodal blobs with placeholders during normalization."
+        },
+        "spatial grounding": {
+          "category": "Perception",
+          "reason": "out_of_modality",
+          "rationale": "Multimodal spatial reasoning, not present in a text trace."
+        },
+        "reasoning error": {
+          "category": "Reasoning",
+          "reason": "no_traceveri_family",
+          "rationale": "A flawed inference that breaks no stated rule and contradicts no tool result has no family."
+        },
+        "numerical error": {
+          "category": "Reasoning",
+          "reason": "no_traceveri_family",
+          "rationale": "Arithmetic mistakes are not checked; traceveri does not recompute the agent's maths."
+        },
+        "task misunderstanding": {
+          "category": "Reasoning",
+          "reason": "no_traceveri_family",
+          "rationale": "Upstream of any rule violation, like TRAIL's Incorrect Problem Identification."
+        },
+        "ineffective planning": {
+          "category": "Planning",
+          "reason": "no_traceveri_family",
+          "rationale": "A suboptimal plan that still repeats no work is not redundant_action."
+        },
+        "context loss": {
+          "category": "Verification",
+          "reason": "no_traceveri_family",
+          "rationale": "Forgetting earlier context has no family, matching TRAIL's Context Handling Failures."
+        },
+        "delegation error": {
+          "category": "Coordination",
+          "reason": "no_traceveri_family",
+          "rationale": "Multi-agent routing. traceveri audits a single agent's trace."
+        },
+        "communication failure": {
+          "category": "Coordination",
+          "reason": "no_traceveri_family",
+          "rationale": "Inter-agent messaging has no single-agent equivalent."
+        }
+      }
+    }
+  },
+  "traceveri_families_without_whowhen_coverage": {
+    "evidence_contradiction": "Only reachable through hallucination, which is localization_only.",
+    "other": "A catch-all by construction; not measurable against a fixed taxonomy."
+  },
+  "impact_summary": {
+    "leaf_types_total": 17,
+    "leaf_types_direct": 6,
+    "leaf_types_localization_only": 2,
+    "leaf_types_excluded": 9,
+    "note": "The dataset card lists 17 modes and the paper says 18; this mapping follows the 17 published in taxonomy.yaml. Any mode absent from this file is parked as unmapped_type by the converter and reported, never guessed into a family.",
+    "warning": "Recall and localisation only. See scoring_warning: the gold set labels one injected error per trace, so precision measured here is meaningless."
+  }
+}

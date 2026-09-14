@@ -1,0 +1,28 @@
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+results/
+traceaudit-out/
+*.log
+
+# Secrets and local keys
+.env
+.env.*
+!.env.example
+
+# Public corpora that forbid redistribution
+data/raw/
+data/labels/trail/
+data/labels/whowhen/
+data/labels/who-when-pro/
+data/labels/heldout/
+
+# LLM response cache
+.cache/

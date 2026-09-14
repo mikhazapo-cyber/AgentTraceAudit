@@ -1,0 +1,59 @@
+{
+  "schema": "semantic_trace_manifest_v2",
+  "record_schema": "semantic_trace_record_v1",
+  "bundle_id": "run_a5705517017a78da18aa928c0f678ea7",
+  "state": "sealed",
+  "sdk": {
+    "language": "typescript",
+    "version": "0.2.0-beta.1"
+  },
+  "privacy_mode": "local-rich",
+  "capture_policy": "rich-credential-scrubbed",
+  "installation_id": "install_6823c8e522b592773243d1cd63a394a7",
+  "started_at": "2026-08-17T19:30:10.141Z",
+  "updated_at": "2026-08-17T19:31:09.127Z",
+  "sealed_at": "2026-08-17T19:31:09.124Z",
+  "sources": [
+    {
+      "id": "src_46a8086fb9482a01b9cc97eb",
+      "name": "manual",
+      "seam": "observe/tool/emit",
+      "version": "0.2.0-beta.1",
+      "qualification": {
+        "status": "exact_qualified"
+      }
+    },
+    {
+      "id": "src_332fe7256e7e92faf27d5ce2",
+      "name": "semantic-layer-runtime",
+      "seam": "capture-runtime",
+      "version": "0.2.0-beta.1",
+      "qualification": {
+        "status": "exact_qualified"
+      }
+    },
+    {
+      "id": "src_3fac3cd4b4af725231870bea",
+      "name": "openclaw",
+      "seam": "openclaw.plugin.typed-hooks",
+      "version": "2026.5.5",
+      "qualification": {
+        "status": "exact_qualified",
+        "profile": "openclaw.plugin.typed-hooks"
+      }
+    }
+  ],
+  "trace": {
+    "path": "trace.jsonl",
+    "records": 38,
+    "last_seq": 38,
+    "bytes": 492465,
+    "losses": 10,
+    "sha256": "a2e76907a681b7c6c204c2c8011ed0e6bd5eb6fe7e20bc7ffa7e4d8e891a5b7f"
+  },
+  "blobs": {
+    "path": "blobs",
+    "count": 0,
+    "bytes": 0
+  }
+}

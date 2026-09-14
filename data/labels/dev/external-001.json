@@ -1,0 +1,8 @@
+{
+  "trace_id": "external-001",
+  "clean": true,
+  "findings": [],
+  "notes": "Two OS tasks handled correctly: adapted to truncated ls output by re-running with `ls -1 | wc -l`; inferred 0 python3 processes from empty `ps -C` output (justified). One action per turn respected.",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

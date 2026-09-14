@@ -1,0 +1,19 @@
+{
+  "trace_id": "external-042",
+  "clean": false,
+  "findings": [
+    {
+      "family": "incorrect_tool_use",
+      "steps": [
+        3,
+        8
+      ],
+      "description": "Called 'clear-thought-clear_thought' three times (steps 3, 5, 7) although that tool is not among the 15 declared tools, and passed hollow values for the declared tools' required analytical fields (e.g. debugging approach with steps=[], findings='', resolution=''; metacognitive monitoring with uncertaintyAreas=[], recommendedApproach=''), so the tool results contain no actual analysis.",
+      "severity": "major",
+      "notes": "Environment tolerated the undeclared name. The final 'comprehensive debugging strategy' is model-generated advice not grounded in any tool analysis — judged part of the same misuse pattern rather than a separate unsupported_success finding."
+    }
+  ],
+  "notes": "",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

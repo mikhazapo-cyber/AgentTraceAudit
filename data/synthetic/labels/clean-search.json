@@ -1,0 +1,8 @@
+{
+  "trace_id": "clean-search",
+  "clean": true,
+  "split": "synthetic",
+  "findings": [],
+  "notes": "Different order ids; necessary search.",
+  "annotator": "synthetic fixture"
+}

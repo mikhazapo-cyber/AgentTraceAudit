@@ -1,0 +1,27 @@
+{
+  "trace_id": "missing-arg",
+  "source_format": "canonical",
+  "task": "React to message M-9 with eyes.",
+  "instructions": "Use message(action, messageId, emoji). messageId is required for every reaction.",
+  "tools": [
+    {
+      "name": "message",
+      "description": "React to or send a chat message",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {"type": "string"},
+          "messageId": {"type": "string"},
+          "emoji": {"type": "string"}
+        },
+        "required": ["action", "messageId"]
+      }
+    }
+  ],
+  "steps": [
+    {"index": 0, "kind": "message", "role": "user", "content": "React to M-9 with eyes"},
+    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "message", "arguments": {"action": "react", "emoji": "eyes"}},
+    {"index": 2, "kind": "tool_result", "role": "tool", "name": "message", "content": "messageId required", "is_error": true},
+    {"index": 3, "kind": "message", "role": "assistant", "content": "I could not add the reaction."}
+  ]
+}

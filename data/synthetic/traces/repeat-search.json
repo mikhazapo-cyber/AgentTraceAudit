@@ -1,0 +1,26 @@
+{
+  "trace_id": "repeat-search",
+  "source_format": "canonical",
+  "task": "Convert 30 degrees to radians.",
+  "instructions": "Use the calculator tools. Do not repeat a successful conversion.",
+  "tools": [
+    {
+      "name": "deg2rad",
+      "description": "Convert degrees to radians",
+      "parameters": {
+        "type": "object",
+        "properties": {"degrees": {"type": "number"}},
+        "required": ["degrees"]
+      }
+    }
+  ],
+  "steps": [
+    {"index": 0, "kind": "message", "role": "user", "content": "Convert 30 degrees to radians."},
+    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "deg2rad", "arguments": {"degrees": 30}},
+    {"index": 2, "kind": "tool_result", "role": "tool", "name": "deg2rad", "content": "0.5235987755982988"},
+    {"index": 3, "kind": "message", "role": "assistant", "content": "Let me correct the usage by passing the correct parameter names."},
+    {"index": 4, "kind": "tool_call", "role": "assistant", "name": "deg2rad", "arguments": {"degrees": 30}},
+    {"index": 5, "kind": "tool_result", "role": "tool", "name": "deg2rad", "content": "0.5235987755982988"},
+    {"index": 6, "kind": "message", "role": "assistant", "content": "30° is 0.5236 radians."}
+  ]
+}

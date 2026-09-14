@@ -1,0 +1,7 @@
+{
+  "name": "deterministic",
+  "notes": "Offline floor. No model calls. Mechanical lane only: unknown tool, schema miss, identical-success repeat, formation error, phantom-failure claim, same-args retry after a validation error. High precision; recall is incomplete for instruction and evidence issues.",
+  "cost_cap_usd": 0.0,
+  "judge_enabled": false,
+  "adjudicate_enabled": false
+}

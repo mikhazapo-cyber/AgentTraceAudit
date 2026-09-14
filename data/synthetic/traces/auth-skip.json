@@ -1,0 +1,35 @@
+{
+  "trace_id": "auth-skip",
+  "source_format": "canonical",
+  "task": "Refund order ORD-88 for user jane@example.com.",
+  "instructions": "Before any refund, charge, or gift-card action you must authenticate the user by calling find_user_id with their email. Never call refund_order unless a user_id has been returned.",
+  "tools": [
+    {
+      "name": "find_user_id",
+      "description": "Look up a user id by email",
+      "parameters": {
+        "type": "object",
+        "properties": {"email": {"type": "string"}},
+        "required": ["email"]
+      }
+    },
+    {
+      "name": "refund_order",
+      "description": "Refund an order for an authenticated user",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {"type": "string"},
+          "order_id": {"type": "string"}
+        },
+        "required": ["user_id", "order_id"]
+      }
+    }
+  ],
+  "steps": [
+    {"index": 0, "kind": "message", "role": "user", "content": "Refund order ORD-88 for jane@example.com"},
+    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "refund_order", "arguments": {"user_id": "guess-1", "order_id": "ORD-88"}},
+    {"index": 2, "kind": "tool_result", "role": "tool", "name": "refund_order", "content": "{\"status\": \"ok\", \"refunded\": 12.50}"},
+    {"index": 3, "kind": "message", "role": "assistant", "content": "Done. I refunded ORD-88."}
+  ]
+}

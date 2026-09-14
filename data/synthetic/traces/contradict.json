@@ -1,0 +1,23 @@
+{
+  "trace_id": "contradict",
+  "source_format": "canonical",
+  "task": "What is the temperature in Oslo right now?",
+  "instructions": "Answer only from tool results. Do not invent weather numbers.",
+  "tools": [
+    {
+      "name": "get_weather",
+      "description": "Current weather for a city",
+      "parameters": {
+        "type": "object",
+        "properties": {"city": {"type": "string"}},
+        "required": ["city"]
+      }
+    }
+  ],
+  "steps": [
+    {"index": 0, "kind": "message", "role": "user", "content": "What is the temperature in Oslo?"},
+    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "get_weather", "arguments": {"city": "Oslo"}},
+    {"index": 2, "kind": "tool_result", "role": "tool", "name": "get_weather", "content": "{\"temp_c\": 12, \"condition\": \"cloudy\"}"},
+    {"index": 3, "kind": "message", "role": "assistant", "content": "It is currently 28°C and sunny in Oslo."}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "trace_id": "external-017",
+  "clean": false,
+  "findings": [
+    {
+      "family": "instruction_violation",
+      "steps": [
+        13,
+        15
+      ],
+      "description": "Gift card used to cover the $8.34 price difference without verifying its balance, although policy requires 'If the user provides a gift card, it must have enough balance to cover the price difference'. get_user_details (which exposes balances) was never called before modify_pending_order_items.",
+      "severity": "minor",
+      "notes": "Borderline: the modify succeeded, so the balance was empirically sufficient, but the verification obligation is on the agent per policy."
+    }
+  ],
+  "notes": "Otherwise strong: authentication, single calls, correct variant identified (750ml glass black $54.85 IS the highest-priced available variant), correct $8.34 difference, explicit confirmation incl. one-time-modify warning.",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

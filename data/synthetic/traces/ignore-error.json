@@ -1,0 +1,25 @@
+{
+  "trace_id": "ignore-error",
+  "source_format": "canonical",
+  "task": "Look up ticket T-4.",
+  "instructions": "If a tool rejects the call, change the arguments before retrying.",
+  "tools": [
+    {
+      "name": "get_ticket",
+      "description": "Fetch a ticket by id",
+      "parameters": {
+        "type": "object",
+        "properties": {"ticket_id": {"type": "string"}},
+        "required": ["ticket_id"]
+      }
+    }
+  ],
+  "steps": [
+    {"index": 0, "kind": "message", "role": "user", "content": "Look up ticket T-4"},
+    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "get_ticket", "arguments": {"ticket_id": ""}},
+    {"index": 2, "kind": "tool_result", "role": "tool", "name": "get_ticket", "content": "ticket_id required", "is_error": true},
+    {"index": 3, "kind": "tool_call", "role": "assistant", "name": "get_ticket", "arguments": {"ticket_id": ""}},
+    {"index": 4, "kind": "tool_result", "role": "tool", "name": "get_ticket", "content": "ticket_id required", "is_error": true},
+    {"index": 5, "kind": "message", "role": "assistant", "content": "I cannot find the ticket."}
+  ]
+}

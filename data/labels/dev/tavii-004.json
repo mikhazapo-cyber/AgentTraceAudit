@@ -1,0 +1,8 @@
+{
+  "trace_id": "tavii-004",
+  "clean": true,
+  "findings": [],
+  "notes": "Social acknowledgement ('Sounds good') to 'I will have a look tomorrow'; no tool work required.",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

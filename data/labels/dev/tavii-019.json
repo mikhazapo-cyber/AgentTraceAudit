@@ -1,0 +1,8 @@
+{
+  "trace_id": "tavii-019",
+  "clean": true,
+  "findings": [],
+  "notes": "'Find ALL candidates' handled as structured talent mapping: domain resolved via company_search, past-employer+past-title filters, full pagination (20x4+7=87), canvas updated per page, final count claim 87 matches tool total_count=87, edge cases hedged.",
+  "annotator": "single human annotator, 2026-09-10",
+  "review": "single"
+}

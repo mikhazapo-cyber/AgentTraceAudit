@@ -1,0 +1,319 @@
+{
+  "format_version": 2,
+  "source_counts": {
+    "tavii": 7,
+    "agentinstruct": 2,
+    "apigen-mt": 2,
+    "nemotron-interactive": 2,
+    "nemotron-tool-calling": 2,
+    "toucan-mcp": 2
+  },
+  "annotation_status": "labelled-dev",
+  "dataset_version": "traceaudit-dev-v1",
+  "source_dataset_version": "agent-trace-dataset-100-v2-unlabelled",
+  "trace_count": 17,
+  "note": "Labelled development subset (17 traces). Use with data/labels/dev. Not held-out. Full 100-trace set is not redistributed.",
+  "traces": [
+    {
+      "trace_id": "tavii-001",
+      "source": "tavii",
+      "source_id": "run_e3d1ef528cedf50a5318e1326029ef1c",
+      "format": "semantic_trace_bundle",
+      "files": [
+        {
+          "path": "traces/tavii-001/manifest.json",
+          "bytes": 1539,
+          "sha256": "d2a7d9b9b421f802617f6e1d9c306ae83fcbe2a2795664c3654437c98f66316b"
+        },
+        {
+          "path": "traces/tavii-001/trace.jsonl",
+          "bytes": 117037,
+          "sha256": "d44753df5ef7b451c4ca63b85667f4f81394e75b6d5dd7703f96604b9db17f0c"
+        },
+        {
+          "path": "traces/tavii-001/complete.json",
+          "bytes": 158,
+          "sha256": "91ba960468febf0ba18caeefbdd0af519f57b92d009ab86e4d6ea139e3734e8d"
+        }
+      ]
+    },
+    {
+      "trace_id": "tavii-004",
+      "source": "tavii",
+      "source_id": "run_486c26c5f39b906ba73b08f2732ba4ea",
+      "format": "semantic_trace_bundle",
+      "files": [
+        {
+          "path": "traces/tavii-004/manifest.json",
+          "bytes": 1538,
+          "sha256": "6edd69653ec496a8679902277612cf4b8a0cf4bc7bdd7b5981b2ac96554a0f88"
+        },
+        {
+          "path": "traces/tavii-004/trace.jsonl",
+          "bytes": 201662,
+          "sha256": "34fe2b9c7942c31dd8eac6f10e91e123ef889a236e25e00f6e6245100aa2043c"
+        },
+        {
+          "path": "traces/tavii-004/complete.json",
+          "bytes": 158,
+          "sha256": "f71fb1afdf76433425bbb96bc8a62ae80b311890d551e4a8c0dd8411ba9c7b7c"
+        }
+      ]
+    },
+    {
+      "trace_id": "tavii-011",
+      "source": "tavii",
+      "source_id": "run_f716e91a436fee667d6e04e3fd422c3e",
+      "format": "semantic_trace_bundle",
+      "files": [
+        {
+          "path": "traces/tavii-011/manifest.json",
+          "bytes": 1539,
+          "sha256": "b25592b41d6a4f1d063efbbe521519e41a3c57e74c75266b004d02f941d3667d"
+        },
+        {
+          "path": "traces/tavii-011/trace.jsonl",
+          "bytes": 450683,
+          "sha256": "cc8403a390ba7ff7c8d134e5ecbecaf2f7e5bd7e20f58ed1804ebe0eb355f6da"
+        },
+        {
+          "path": "traces/tavii-011/complete.json",
+          "bytes": 158,
+          "sha256": "3abbe7a401b1eeaec47ea7838cd322a10fe247c3dc130af0005fec7a0434592b"
+        }
+      ]
+    },
+    {
+      "trace_id": "tavii-015",
+      "source": "tavii",
+      "source_id": "run_faf92e239504c53133be9f47c34a6e49",
+      "format": "semantic_trace_bundle",
+      "files": [
+        {
+          "path": "traces/tavii-015/manifest.json",
+          "bytes": 1539,
+          "sha256": "ca56fd6a4b4d7ec2483c9f8538cb4d7b8a9ab8f790cf37db7826346468e6faed"
+        },
+        {
+          "path": "traces/tavii-015/trace.jsonl",
+          "bytes": 100147,
+          "sha256": "038b38959ba2b9f668098aef4f8424791eace7685d3b518d6dcc0eb0bfa06643"
+        },
+        {
+          "path": "traces/tavii-015/complete.json",
+          "bytes": 158,
+          "sha256": "b3b35dfe32502af747c9b18502d7d3fc5741a7e481304be4cd664423eed28f7f"
+        }
+      ]
+    },
+    {
+      "trace_id": "tavii-019",
+      "source": "tavii",
+      "source_id": "run_8090d1628a3328f864a6de3b65ca0ed4",
+      "format": "semantic_trace_bundle",
+      "files": [
+        {
+          "path": "traces/tavii-019/manifest.json",
+          "bytes": 1539,
+          "sha256": "3a80788c2595d451b0e70fe511193f9bea6afc8c59c6179dd4e5d224fbdd3a0d"
+        },
+        {
+          "path": "traces/tavii-019/trace.jsonl",
+          "bytes": 193156,
+          "sha256": "eba0f97f5b838b9c9c39b31720a202bcae18ce919757285acb1838beceee769b"
+        },
+        {
+          "path": "traces/tavii-019/complete.json",
+          "bytes": 158,
+          "sha256": "a1ca82c734ada67c1acb3a0db545c394841f12ad8190c9dbd0c0ab06bcea279e"
+        }
+      ]
+    },
+    {
+      "trace_id": "tavii-022",
+      "source": "tavii",
+      "source_id": "run_25bc84f92c6291125b0cf44172c587dd",
+      "format": "semantic_trace_bundle",
+      "files": [
+        {
+          "path": "traces/tavii-022/manifest.json",
+          "bytes": 1539,
+          "sha256": "af893ff56c0ead377c18ff025cc730b23ac03b683a5a7e54665c08486eb1cf50"
+        },
+        {
+          "path": "traces/tavii-022/trace.jsonl",
+          "bytes": 104424,
+          "sha256": "016121c650ed534cabe779ae16fd26c14d92796fc2068f4b8274b24e5290923d"
+        },
+        {
+          "path": "traces/tavii-022/complete.json",
+          "bytes": 158,
+          "sha256": "cbba3c4ad557ba649265bfd878229adec3a9f02d59361306ea157d3ce4af9d5d"
+        }
+      ]
+    },
+    {
+      "trace_id": "tavii-030",
+      "source": "tavii",
+      "source_id": "run_a5705517017a78da18aa928c0f678ea7",
+      "format": "semantic_trace_bundle",
+      "files": [
+        {
+          "path": "traces/tavii-030/manifest.json",
+          "bytes": 1539,
+          "sha256": "a7488f9808f46226c006aced25f9edd7525aeefdf132ee88419cac9778d33452"
+        },
+        {
+          "path": "traces/tavii-030/trace.jsonl",
+          "bytes": 492465,
+          "sha256": "a2e76907a681b7c6c204c2c8011ed0e6bd5eb6fe7e20bc7ffa7e4d8e891a5b7f"
+        },
+        {
+          "path": "traces/tavii-030/complete.json",
+          "bytes": 158,
+          "sha256": "2713c1f8fb0de6ff843d25e48d6597d3134069b10967addfa328b53c3c26ae69"
+        }
+      ]
+    },
+    {
+      "trace_id": "external-001",
+      "source": "agentinstruct",
+      "source_id": "os_74",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-001.json",
+          "bytes": 2814,
+          "sha256": "9c272970f7a221c05d2746e2ffe8dc86abae08924129fc4b46d372d2660b7dbc"
+        }
+      ],
+      "source_repository": "THUDM/AgentInstruct"
+    },
+    {
+      "trace_id": "external-009",
+      "source": "agentinstruct",
+      "source_id": "kg_260",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-009.json",
+          "bytes": 10793,
+          "sha256": "6cb2da2da3cb37cba388d7391999e1d2e83b9653730727ffe975cc0f102a68b1"
+        }
+      ],
+      "source_repository": "THUDM/AgentInstruct"
+    },
+    {
+      "trace_id": "external-011",
+      "source": "apigen-mt",
+      "source_id": "apigen-1987",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-011.json",
+          "bytes": 31545,
+          "sha256": "c6eb06131596f3c1262170cf2fec3577fb46174185b8060a196ea400d1be34df"
+        }
+      ],
+      "source_repository": "Salesforce/APIGen-MT-5k"
+    },
+    {
+      "trace_id": "external-017",
+      "source": "apigen-mt",
+      "source_id": "apigen-4589",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-017.json",
+          "bytes": 27944,
+          "sha256": "88ad7000c216bb0311cb28d62ff2c6101607e785f4b6b73a5bb164e85375212d"
+        }
+      ],
+      "source_repository": "Salesforce/APIGen-MT-5k"
+    },
+    {
+      "trace_id": "external-021",
+      "source": "nemotron-interactive",
+      "source_id": "76caa737-5909-4ab2-83e9-3ee20c5bc897",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-021.json",
+          "bytes": 18096,
+          "sha256": "77a05eeef14825953b4bbadf15fc4ef28930f5d605c175ff8cebb111856831f2"
+        }
+      ],
+      "source_repository": "nvidia/Nemotron-Agentic-v1"
+    },
+    {
+      "trace_id": "external-024",
+      "source": "nemotron-interactive",
+      "source_id": "9c00239c-24c8-4411-afb7-05475ffbc375",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-024.json",
+          "bytes": 18392,
+          "sha256": "f815387651433683b81e18e65a0304e933b8e61e4f8fee592c93333c1fb1b37d"
+        }
+      ],
+      "source_repository": "nvidia/Nemotron-Agentic-v1"
+    },
+    {
+      "trace_id": "external-031",
+      "source": "nemotron-tool-calling",
+      "source_id": "f2048e89-b96f-4b52-b8ae-31e4e0aab829",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-031.json",
+          "bytes": 9212,
+          "sha256": "579388221315068f71a6199475cf3f37f7b208dadf5f7ed31d4e105eae990c45"
+        }
+      ],
+      "source_repository": "nvidia/Nemotron-Agentic-v1"
+    },
+    {
+      "trace_id": "external-033",
+      "source": "nemotron-tool-calling",
+      "source_id": "e3a619e1-9946-438e-a312-ae608dd400d8",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-033.json",
+          "bytes": 36253,
+          "sha256": "b147d6944e7c67f771a95d93e289a70b4644adcbe65c798066c7ebf6346f5c83"
+        }
+      ],
+      "source_repository": "nvidia/Nemotron-Agentic-v1"
+    },
+    {
+      "trace_id": "external-041",
+      "source": "toucan-mcp",
+      "source_id": "22fe2b49-5828-5e6a-850e-47258dda77b4",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-041.json",
+          "bytes": 29106,
+          "sha256": "a8cbba55be2ced79d1d543b2fa1caf84e05e01f3500e0875ed3cd7f1ce4be8cb"
+        }
+      ],
+      "source_repository": "Agent-Ark/Toucan-1.5M"
+    },
+    {
+      "trace_id": "external-042",
+      "source": "toucan-mcp",
+      "source_id": "32642982-8cd5-5914-93b8-12cb655ac4fd",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/external-042.json",
+          "bytes": 31344,
+          "sha256": "75024c3d36faa5b76bc9e6a2ebb2cfc987e638bd7e44992a5599677f2395dcb0"
+        }
+      ],
+      "source_repository": "Agent-Ark/Toucan-1.5M"
+    }
+  ]
+}

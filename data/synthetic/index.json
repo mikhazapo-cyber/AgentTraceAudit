@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "dataset_version": "synthetic-v1",
+  "trace_count": 9,
+  "note": "Constructed traces for unit tests and a generalization check. Not the evaluator's held-out set.",
+  "traces": [
+    {"trace_id": "auth-skip", "source": "canonical", "format": "canonical", "files": [{"path": "traces/auth-skip.json"}]},
+    {"trace_id": "missing-arg", "source": "canonical", "format": "canonical", "files": [{"path": "traces/missing-arg.json"}]},
+    {"trace_id": "contradict", "source": "canonical", "format": "canonical", "files": [{"path": "traces/contradict.json"}]},
+    {"trace_id": "false-success", "source": "canonical", "format": "canonical", "files": [{"path": "traces/false-success.json"}]},
+    {"trace_id": "repeat-search", "source": "canonical", "format": "canonical", "files": [{"path": "traces/repeat-search.json"}]},
+    {"trace_id": "ignore-error", "source": "canonical", "format": "canonical", "files": [{"path": "traces/ignore-error.json"}]},
+    {"trace_id": "clean-retry", "source": "canonical", "format": "canonical", "files": [{"path": "traces/clean-retry.json"}]},
+    {"trace_id": "clean-verify", "source": "canonical", "format": "canonical", "files": [{"path": "traces/clean-verify.json"}]},
+    {"trace_id": "clean-search", "source": "canonical", "format": "canonical", "files": [{"path": "traces/clean-search.json"}]}
+  ]
+}
