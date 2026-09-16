@@ -114,6 +114,18 @@ def _quote_block(text: str, limit: int = 600) -> str:
     return "\n".join(f"> {line}" if line.strip() else ">" for line in body.splitlines())
 
 
+def _evidence_lines(f: Finding) -> list[str]:
+    lines: list[str] = []
+    seen: set[tuple[int, str]] = set()
+    for e in f.evidence:
+        quote = (e.quote or "").strip()[:300]
+        if not quote or (e.step, quote) in seen:
+            continue
+        seen.add((e.step, quote))
+        lines.append(f"- step {e.step}: `{quote}`")
+    return lines
+
+
 def finding_markdown(f: Finding, ordinal: int = 0) -> str:
     label = f"{ordinal}. " if ordinal else ""
     cls = f.error_class or f.family
@@ -139,16 +151,9 @@ def finding_markdown(f: Finding, ordinal: int = 0) -> str:
         lines += ["", f"**What the agent could see then.** {f.available_info}"]
     if f.alternative:
         lines += ["", f"**Cheaper alternative available then.** {f.alternative}"]
-    lines += ["", "**Supporting excerpts.**"]
-    seen: set[tuple[int, str]] = set()
-    for e in f.evidence:
-        quote = (e.quote or "").strip()[:300]
-        if (e.step, quote) in seen:
-            continue
-        seen.add((e.step, quote))
-        lines.append(f"- step {e.step}: `{quote}`")
-    if not seen:
-        lines.append("- (none recorded)")
+    excerpts = _evidence_lines(f) if f.status == CONFIRMED else []
+    if excerpts:
+        lines += ["", "**Supporting excerpts.**", *excerpts]
     if f.adjudication_reason:
         lines += ["", f"**Judge.** {f.adjudication_reason}"]
     lines.append("")
@@ -202,8 +207,6 @@ def trace_report(result: TraceResult, trace: CanonicalTrace | None = None) -> st
     if conf:
         body += ["## Confirmed findings", ""]
         body += [finding_markdown(f, i) for i, f in enumerate(conf, 1)]
-    elif result.status != "error":
-        body += ["## Confirmed findings", "", "None.", ""]
 
     if abst:
         body += [
@@ -419,7 +422,7 @@ def write_run_artifacts(
         writer = csv.DictWriter(fh, fieldnames=_CSV_FIELDS)
         writer.writeheader()
         for r in results:
-            for f in r.findings:
+            for f in confirmed_findings(r):
                 writer.writerow(
                     {
                         "trace_id": r.trace_id,

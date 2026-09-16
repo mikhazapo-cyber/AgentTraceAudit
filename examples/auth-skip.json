@@ -9,8 +9,14 @@
       "description": "Look up a user id by email",
       "parameters": {
         "type": "object",
-        "properties": {"email": {"type": "string"}},
-        "required": ["email"]
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
       }
     },
     {
@@ -19,17 +25,49 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "user_id": {"type": "string"},
-          "order_id": {"type": "string"}
+          "user_id": {
+            "type": "string"
+          },
+          "order_id": {
+            "type": "string"
+          }
         },
-        "required": ["user_id", "order_id"]
+        "required": [
+          "user_id",
+          "order_id"
+        ]
       }
     }
   ],
   "steps": [
-    {"index": 0, "kind": "message", "role": "user", "content": "Refund order ORD-88 for jane@example.com"},
-    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "refund_order", "arguments": {"user_id": "guess-1", "order_id": "ORD-88"}},
-    {"index": 2, "kind": "tool_result", "role": "tool", "name": "refund_order", "content": "{\"status\": \"ok\", \"refunded\": 12.50}"},
-    {"index": 3, "kind": "message", "role": "assistant", "content": "Done. I refunded ORD-88."}
+    {
+      "index": 0,
+      "kind": "message",
+      "role": "user",
+      "content": "Refund order ORD-88 for jane@example.com"
+    },
+    {
+      "index": 1,
+      "kind": "tool_call",
+      "role": "assistant",
+      "name": "refund_order",
+      "arguments": {
+        "user_id": "guess-1",
+        "order_id": "ORD-88"
+      }
+    },
+    {
+      "index": 2,
+      "kind": "tool_result",
+      "role": "tool",
+      "name": "refund_order",
+      "content": "{\"status\": \"ok\", \"refunded\": 12.50}"
+    },
+    {
+      "index": 3,
+      "kind": "message",
+      "role": "assistant",
+      "content": "Done. I refunded ORD-88."
+    }
   ]
 }

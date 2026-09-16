@@ -309,7 +309,9 @@ class Writer:
         TRACES.mkdir(parents=True, exist_ok=True)
         LABELS.mkdir(parents=True, exist_ok=True)
         rel = f"traces/{trace_id}.json"
-        blob = json.dumps(payload, ensure_ascii=False, indent=1).encode("utf-8")
+        blob = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode(
+            "utf-8"
+        )
         if len(blob) > MAX_TRACE_BYTES:
             self.skipped["too_large"] += 1
             return False
@@ -358,7 +360,7 @@ class Writer:
         if extra_label:
             label.update(extra_label)
         (LABELS / f"{trace_id}.json").write_text(
-            json.dumps(label, indent=2, ensure_ascii=False), encoding="utf-8"
+            json.dumps(label, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
         )
         self.entries.append(
             {
@@ -1437,7 +1439,9 @@ def write_indexes(writer: Writer) -> None:
         ),
         "traces": writer.entries,
     }
-    (CHECKED / "index.json").write_text(json.dumps(index, indent=2), encoding="utf-8")
+    (CHECKED / "index.json").write_text(
+        json.dumps(index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     precision = {
         "format_version": 2,
         "dataset_version": "traceaudit-precision-v1",
@@ -1456,7 +1460,7 @@ def write_indexes(writer: Writer) -> None:
         "traces": writer.precision,
     }
     (PRECISION / "index.json").write_text(
-        json.dumps(precision, indent=2), encoding="utf-8"
+        json.dumps(precision, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
 
 

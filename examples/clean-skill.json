@@ -9,8 +9,14 @@
       "description": "Look up a user id by email",
       "parameters": {
         "type": "object",
-        "properties": {"email": {"type": "string"}},
-        "required": ["email"]
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
       }
     },
     {
@@ -18,8 +24,14 @@
       "description": "List orders for a user id",
       "parameters": {
         "type": "object",
-        "properties": {"user_id": {"type": "string"}},
-        "required": ["user_id"]
+        "properties": {
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id"
+        ]
       }
     },
     {
@@ -27,15 +39,45 @@
       "description": "Search orders by email",
       "parameters": {
         "type": "object",
-        "properties": {"email": {"type": "string"}},
-        "required": ["email"]
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
       }
     }
   ],
   "steps": [
-    {"index": 0, "kind": "message", "role": "user", "content": "Open orders for jane@example.com?"},
-    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "search_orders", "arguments": {"email": "jane@example.com"}},
-    {"index": 2, "kind": "tool_result", "role": "tool", "name": "search_orders", "content": "{\"orders\": [{\"id\": \"ORD-88\", \"status\": \"open\"}]}"},
-    {"index": 3, "kind": "message", "role": "assistant", "content": "Jane has one open order: ORD-88."}
+    {
+      "index": 0,
+      "kind": "message",
+      "role": "user",
+      "content": "Open orders for jane@example.com?"
+    },
+    {
+      "index": 1,
+      "kind": "tool_call",
+      "role": "assistant",
+      "name": "search_orders",
+      "arguments": {
+        "email": "jane@example.com"
+      }
+    },
+    {
+      "index": 2,
+      "kind": "tool_result",
+      "role": "tool",
+      "name": "search_orders",
+      "content": "{\"orders\": [{\"id\": \"ORD-88\", \"status\": \"open\"}]}"
+    },
+    {
+      "index": 3,
+      "kind": "message",
+      "role": "assistant",
+      "content": "Jane has one open order: ORD-88."
+    }
   ]
 }

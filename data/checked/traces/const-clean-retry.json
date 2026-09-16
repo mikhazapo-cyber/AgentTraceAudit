@@ -1,76 +1,76 @@
 {
- "trace_id": "clean-retry",
- "source_format": "canonical",
- "task": "Fetch the status of job J-1.",
- "instructions": "If a request fails with a temporary error, retry once.",
- "tools": [
-  {
-   "name": "get_job",
-   "description": "Job status",
-   "parameters": {
-    "type": "object",
-    "properties": {
-     "job_id": {
-      "type": "string"
-     }
+  "trace_id": "clean-retry",
+  "source_format": "canonical",
+  "task": "Fetch the status of job J-1.",
+  "instructions": "If a request fails with a temporary error, retry once.",
+  "tools": [
+    {
+      "name": "get_job",
+      "description": "Job status",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id"
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "index": 0,
+      "kind": "message",
+      "role": "user",
+      "content": "Status of J-1?"
     },
-    "required": [
-     "job_id"
-    ]
-   }
+    {
+      "index": 1,
+      "kind": "tool_call",
+      "role": "assistant",
+      "name": "get_job",
+      "arguments": {
+        "job_id": "J-1"
+      }
+    },
+    {
+      "index": 2,
+      "kind": "tool_result",
+      "role": "tool",
+      "name": "get_job",
+      "content": "429 Too Many Requests, retry later",
+      "is_error": true
+    },
+    {
+      "index": 3,
+      "kind": "tool_call",
+      "role": "assistant",
+      "name": "get_job",
+      "arguments": {
+        "job_id": "J-1"
+      }
+    },
+    {
+      "index": 4,
+      "kind": "tool_result",
+      "role": "tool",
+      "name": "get_job",
+      "content": "{\"state\": \"done\"}"
+    },
+    {
+      "index": 5,
+      "kind": "message",
+      "role": "assistant",
+      "content": "Job J-1 is done."
+    }
+  ],
+  "meta": {
+    "corpus": "construction",
+    "license": "MIT (this repo)",
+    "original_id": "clean-retry.json",
+    "label_kind": "construction"
   }
- ],
- "steps": [
-  {
-   "index": 0,
-   "kind": "message",
-   "role": "user",
-   "content": "Status of J-1?"
-  },
-  {
-   "index": 1,
-   "kind": "tool_call",
-   "role": "assistant",
-   "name": "get_job",
-   "arguments": {
-    "job_id": "J-1"
-   }
-  },
-  {
-   "index": 2,
-   "kind": "tool_result",
-   "role": "tool",
-   "name": "get_job",
-   "content": "429 Too Many Requests, retry later",
-   "is_error": true
-  },
-  {
-   "index": 3,
-   "kind": "tool_call",
-   "role": "assistant",
-   "name": "get_job",
-   "arguments": {
-    "job_id": "J-1"
-   }
-  },
-  {
-   "index": 4,
-   "kind": "tool_result",
-   "role": "tool",
-   "name": "get_job",
-   "content": "{\"state\": \"done\"}"
-  },
-  {
-   "index": 5,
-   "kind": "message",
-   "role": "assistant",
-   "content": "Job J-1 is done."
-  }
- ],
- "meta": {
-  "corpus": "construction",
-  "license": "MIT (this repo)",
-  "original_id": "clean-retry.json",
-  "label_kind": "construction"
- }
 }

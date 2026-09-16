@@ -1,8 +1,14 @@
 {
   "model": "demo",
   "messages": [
-    {"role": "system", "content": "Use get_weather. Quote the returned temperature exactly."},
-    {"role": "user", "content": "How warm is Lisbon?"},
+    {
+      "role": "system",
+      "content": "Use get_weather. Quote the returned temperature exactly."
+    },
+    {
+      "role": "user",
+      "content": "How warm is Lisbon?"
+    },
     {
       "role": "assistant",
       "content": "",
@@ -10,12 +16,23 @@
         {
           "id": "c1",
           "type": "function",
-          "function": {"name": "get_weather", "arguments": "{\"city\":\"Lisbon\"}"}
+          "function": {
+            "name": "get_weather",
+            "arguments": "{\"city\":\"Lisbon\"}"
+          }
         }
       ]
     },
-    {"role": "tool", "tool_call_id": "c1", "name": "get_weather", "content": "{\"temp_c\": 19}"},
-    {"role": "assistant", "content": "Lisbon is 19°C."}
+    {
+      "role": "tool",
+      "tool_call_id": "c1",
+      "name": "get_weather",
+      "content": "{\"temp_c\": 19}"
+    },
+    {
+      "role": "assistant",
+      "content": "Lisbon is 19°C."
+    }
   ],
   "tools": [
     {
@@ -25,8 +42,14 @@
         "description": "Current temperature",
         "parameters": {
           "type": "object",
-          "properties": {"city": {"type": "string"}},
-          "required": ["city"]
+          "properties": {
+            "city": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "city"
+          ]
         }
       }
     }

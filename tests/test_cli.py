@@ -3,7 +3,8 @@ from pathlib import Path
 from traceaudit.cli import main
 from traceaudit.config import load_config
 from traceaudit.llm import NullClient, PaymentRequired, ScriptedClient
-from traceaudit.schemas import TraceResult
+from traceaudit.report import trace_report, write_run_artifacts
+from traceaudit.schemas import Evidence, Finding, TraceResult
 
 
 def test_missing_file() -> None:
@@ -90,6 +91,8 @@ def test_cli_writes_families(monkeypatch, examples: Path, tmp_path: Path) -> Non
     report = (out / "reports" / "contradict.md").read_text(encoding="utf-8")
     assert "contradicts_tool_output" in report
     assert "80%" in report
+    assert "Supporting excerpts" in report
+    assert "insufficient_evidence" not in csv_text
 
 
 def test_cli_labels_and_yes(monkeypatch, examples: Path, tmp_path: Path) -> None:
@@ -229,3 +232,30 @@ def test_env_min_confidence(monkeypatch) -> None:
     monkeypatch.setenv("TRACEAUDIT_MIN_CONFIDENCE", "85")
     cfg = load_config()
     assert cfg.min_confidence == 85
+
+
+def test_report_omits_evidence_when_nothing_confirmed(tmp_path: Path) -> None:
+    result = TraceResult(
+        trace_id="clean",
+        status="ok",
+        findings=[
+            Finding(
+                finding_id="clean-F01",
+                trace_id="clean",
+                family="other",
+                description="not proven",
+                status="insufficient_evidence",
+                evidence=[Evidence(step=1, quote="hello")],
+            )
+        ],
+    )
+    text = trace_report(result)
+    assert "Supporting excerpts" not in text
+    assert "## Confirmed findings" not in text
+    assert "Abstained" in text
+    out = write_run_artifacts(tmp_path / "out", [result])
+    csv_text = (out / "findings.csv").read_text(encoding="utf-8")
+    assert "hello" not in csv_text
+    assert "insufficient_evidence" not in csv_text
+    report = (out / "reports" / "clean.md").read_text(encoding="utf-8")
+    assert "Supporting excerpts" not in report

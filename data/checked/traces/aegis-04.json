@@ -1,32 +1,32 @@
 {
- "task": "Bill picked 50 apples from the orchard with his wife and two children.  He sends each of his kids to school with 3 apples for their two favorite teachers.  His wife Jill bakes two apple pies, using 10 apples per pie. How many apples does Bill have left?",
- "messages": [
-  {
-   "role": "user",
-   "content": "Bill picked 50 apples from the orchard with his wife and two children.  He sends each of his kids to school with 3 apples for their two favorite teachers.  His wife Jill bakes two apple pies, using 10 apples per pie. How many apples does Bill have left?"
-  },
-  {
-   "role": "assistant",
-   "name": "Assistant1",
-   "content": "Bill initially picked 50 apples. \n\nHe sends each of his two kids to school with 3 apples for their teachers, which totals:\n\\[ \n2 \\text{ kids} \\times 3 \\text{ apples/kid} = 6 \\text{ apples} \n\\]\n\nHis wife Jill bakes two apple pies using 10 apples each, which totals:\n\\[ \n2 \\text{ pies} \\times 10 \\text{ apples/pie} = 20 \\text{ apples} \n\\]\n\nNow, we can calculate the total number of apples used:\n\\[\n6 \\text{ apples (for the kids)} + 20 \\text{ apples (for the pies)} = 26 \\text{ apples}\n\\]\n\nTo find out how many apples Bill has left, we subtract the total used from the initial amount:\n\\[\n50 \\text{ apples} - 26 \\text{ apples} = 24 \\text{ apples}\n\\]\n\nTherefore, Bill has **24 apples left**."
-  },
-  {
-   "role": "assistant",
-   "name": "Assistant2",
-   "content": "Bill initially picked 50 apples. \n\nHe sends each of his two kids to school with 3 apples for their teachers, which totals:\n\\[ \n2 \\text{ kids} \\times 3 \\text{ apples} = 6 \\text{ apples} \n\\]\n\nHe also gives 10 apples to his wife Jill for each of the two apple pies she bakes, which totals:\n\\[ \n2 \\text{ pies} \\times 10 \\text{ apples} = 20 \\text{ apples} \n\\]\n\nNow, we can calculate the total number of apples used:\n\\[ \n6 \\text{ apples} + 20 \\text{ apples} = 26 \\text{ apples} \n\\]\n\nNext, we subtract the number of apples used from the initial amount:\n\\[ \n50 \\text{ apples} - 26 \\text{ apples} = 24 \\text{ apples} \n\\]\n\nTherefore, Bill has **24 apples left**."
-  },
-  {
-   "role": "assistant",
-   "name": "Assistant3",
-   "content": "Bill initially picked 50 apples. \n\nHe sends each of his two kids to school with 3 apples for their teachers, which totals:\n\\[ \n2 \\text{ kids} \\times 3 \\text{ apples/kid} = 6 \\text{ apples} \n\\]\n\nNext, Jill bakes two apple pies using 10 apples per pie, which totals:\n\\[ \n2 \\text{ pies} \\times 10 \\text{ apples/pie} = 20 \\text{ apples} \n\\]\n\nNow, we can calculate the total number of apples used:\n\\[ \n6 \\text{ apples (for teachers)} + 20 \\text{ apples (for pies)} = 26 \\text{ apples} \n\\]\n\nFinally, we subtract the total apples used from the initial amount:\n\\[ \n50 \\text{ apples} - 26 \\text{ apples} = 26 \\text{ apples} \n\\]\n\nThus, Bill has **26 apples left**."
+  "task": "Bill picked 50 apples from the orchard with his wife and two children.  He sends each of his kids to school with 3 apples for their two favorite teachers.  His wife Jill bakes two apple pies, using 10 apples per pie. How many apples does Bill have left?",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Bill picked 50 apples from the orchard with his wife and two children.  He sends each of his kids to school with 3 apples for their two favorite teachers.  His wife Jill bakes two apple pies, using 10 apples per pie. How many apples does Bill have left?"
+    },
+    {
+      "role": "assistant",
+      "name": "Assistant1",
+      "content": "Bill initially picked 50 apples. \n\nHe sends each of his two kids to school with 3 apples for their teachers, which totals:\n\\[ \n2 \\text{ kids} \\times 3 \\text{ apples/kid} = 6 \\text{ apples} \n\\]\n\nHis wife Jill bakes two apple pies using 10 apples each, which totals:\n\\[ \n2 \\text{ pies} \\times 10 \\text{ apples/pie} = 20 \\text{ apples} \n\\]\n\nNow, we can calculate the total number of apples used:\n\\[\n6 \\text{ apples (for the kids)} + 20 \\text{ apples (for the pies)} = 26 \\text{ apples}\n\\]\n\nTo find out how many apples Bill has left, we subtract the total used from the initial amount:\n\\[\n50 \\text{ apples} - 26 \\text{ apples} = 24 \\text{ apples}\n\\]\n\nTherefore, Bill has **24 apples left**."
+    },
+    {
+      "role": "assistant",
+      "name": "Assistant2",
+      "content": "Bill initially picked 50 apples. \n\nHe sends each of his two kids to school with 3 apples for their teachers, which totals:\n\\[ \n2 \\text{ kids} \\times 3 \\text{ apples} = 6 \\text{ apples} \n\\]\n\nHe also gives 10 apples to his wife Jill for each of the two apple pies she bakes, which totals:\n\\[ \n2 \\text{ pies} \\times 10 \\text{ apples} = 20 \\text{ apples} \n\\]\n\nNow, we can calculate the total number of apples used:\n\\[ \n6 \\text{ apples} + 20 \\text{ apples} = 26 \\text{ apples} \n\\]\n\nNext, we subtract the number of apples used from the initial amount:\n\\[ \n50 \\text{ apples} - 26 \\text{ apples} = 24 \\text{ apples} \n\\]\n\nTherefore, Bill has **24 apples left**."
+    },
+    {
+      "role": "assistant",
+      "name": "Assistant3",
+      "content": "Bill initially picked 50 apples. \n\nHe sends each of his two kids to school with 3 apples for their teachers, which totals:\n\\[ \n2 \\text{ kids} \\times 3 \\text{ apples/kid} = 6 \\text{ apples} \n\\]\n\nNext, Jill bakes two apple pies using 10 apples per pie, which totals:\n\\[ \n2 \\text{ pies} \\times 10 \\text{ apples/pie} = 20 \\text{ apples} \n\\]\n\nNow, we can calculate the total number of apples used:\n\\[ \n6 \\text{ apples (for teachers)} + 20 \\text{ apples (for pies)} = 26 \\text{ apples} \n\\]\n\nFinally, we subtract the total apples used from the initial amount:\n\\[ \n50 \\text{ apples} - 26 \\text{ apples} = 26 \\text{ apples} \n\\]\n\nThus, Bill has **26 apples left**."
+    }
+  ],
+  "meta": {
+    "corpus": "aegis",
+    "license": "MIT",
+    "original_id": "GSM8K_gpt-4o-mini_dylan_1_6a7f3cfc",
+    "label_kind": "injected",
+    "framework": "dylan",
+    "injected": true
   }
- ],
- "meta": {
-  "corpus": "aegis",
-  "license": "MIT",
-  "original_id": "GSM8K_gpt-4o-mini_dylan_1_6a7f3cfc",
-  "label_kind": "injected",
-  "framework": "dylan",
-  "injected": true
- }
 }

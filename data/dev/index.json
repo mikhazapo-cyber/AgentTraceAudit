@@ -27,13 +27,13 @@
         },
         {
           "path": "traces/tavii-001/trace.jsonl",
-          "bytes": 117037,
-          "sha256": "d44753df5ef7b451c4ca63b85667f4f81394e75b6d5dd7703f96604b9db17f0c"
+          "bytes": 117081,
+          "sha256": "f856c0e3d5c24ea5a8ce842f6681666f6de58a98be89bbdb6d0cb6e073037181"
         },
         {
           "path": "traces/tavii-001/complete.json",
-          "bytes": 158,
-          "sha256": "91ba960468febf0ba18caeefbdd0af519f57b92d009ab86e4d6ea139e3734e8d"
+          "bytes": 172,
+          "sha256": "636c6a736e8b589dbc0a4dfa3135722fc2b2d52a4048a5080998657d46f78daf"
         }
       ]
     },
@@ -50,13 +50,13 @@
         },
         {
           "path": "traces/tavii-004/trace.jsonl",
-          "bytes": 201662,
-          "sha256": "34fe2b9c7942c31dd8eac6f10e91e123ef889a236e25e00f6e6245100aa2043c"
+          "bytes": 201676,
+          "sha256": "417a3e01605ed946fc185b540241cc36f2ffd8e67fc7e2ac6ed5a92c9faad655"
         },
         {
           "path": "traces/tavii-004/complete.json",
-          "bytes": 158,
-          "sha256": "f71fb1afdf76433425bbb96bc8a62ae80b311890d551e4a8c0dd8411ba9c7b7c"
+          "bytes": 172,
+          "sha256": "11dc6ae48cea3bd37397879a04367657e8f392c0720596dc1bb32db2399ea048"
         }
       ]
     },
@@ -73,13 +73,13 @@
         },
         {
           "path": "traces/tavii-011/trace.jsonl",
-          "bytes": 450683,
-          "sha256": "cc8403a390ba7ff7c8d134e5ecbecaf2f7e5bd7e20f58ed1804ebe0eb355f6da"
+          "bytes": 450739,
+          "sha256": "67e0071db622a94218e534730982fcbab22d95074e734846d0a14f0028212700"
         },
         {
           "path": "traces/tavii-011/complete.json",
-          "bytes": 158,
-          "sha256": "3abbe7a401b1eeaec47ea7838cd322a10fe247c3dc130af0005fec7a0434592b"
+          "bytes": 172,
+          "sha256": "256fb8d9bd6efcaf5339a12b53fc3d095f9ea8bace947a9863bd14f333dd2eed"
         }
       ]
     },
@@ -96,13 +96,13 @@
         },
         {
           "path": "traces/tavii-015/trace.jsonl",
-          "bytes": 100147,
-          "sha256": "038b38959ba2b9f668098aef4f8424791eace7685d3b518d6dcc0eb0bfa06643"
+          "bytes": 100185,
+          "sha256": "38a76f601d0ab0dbd3b31187dc1ff26356d737dc2ac2c34f84f3a673606054e7"
         },
         {
           "path": "traces/tavii-015/complete.json",
-          "bytes": 158,
-          "sha256": "b3b35dfe32502af747c9b18502d7d3fc5741a7e481304be4cd664423eed28f7f"
+          "bytes": 172,
+          "sha256": "b8858956fd4bb947d17a63621790478cdb00e06473db1811cf7bd33b7cf382d2"
         }
       ]
     },
@@ -119,13 +119,13 @@
         },
         {
           "path": "traces/tavii-019/trace.jsonl",
-          "bytes": 193156,
-          "sha256": "eba0f97f5b838b9c9c39b31720a202bcae18ce919757285acb1838beceee769b"
+          "bytes": 193242,
+          "sha256": "282eeea16d27250f9aa40d52704115aecff8a4cb96ab7dec68196036e59b7cee"
         },
         {
           "path": "traces/tavii-019/complete.json",
-          "bytes": 158,
-          "sha256": "a1ca82c734ada67c1acb3a0db545c394841f12ad8190c9dbd0c0ab06bcea279e"
+          "bytes": 172,
+          "sha256": "0590f33b2ca765a80e7d41aacffc9e84d0598497a621924a98d0d616cf1a73f4"
         }
       ]
     },
@@ -142,13 +142,13 @@
         },
         {
           "path": "traces/tavii-022/trace.jsonl",
-          "bytes": 104424,
-          "sha256": "016121c650ed534cabe779ae16fd26c14d92796fc2068f4b8274b24e5290923d"
+          "bytes": 104468,
+          "sha256": "9cf5d49fe61d752f76c1c958fa80246a29f639f55191c415caa7364c08f9e4d5"
         },
         {
           "path": "traces/tavii-022/complete.json",
-          "bytes": 158,
-          "sha256": "cbba3c4ad557ba649265bfd878229adec3a9f02d59361306ea157d3ce4af9d5d"
+          "bytes": 172,
+          "sha256": "0e5819db4058ce76a470618cbcc1731467609bfc705dbe2cfc6303cf268450c1"
         }
       ]
     },
@@ -165,13 +165,13 @@
         },
         {
           "path": "traces/tavii-030/trace.jsonl",
-          "bytes": 492465,
-          "sha256": "a2e76907a681b7c6c204c2c8011ed0e6bd5eb6fe7e20bc7ffa7e4d8e891a5b7f"
+          "bytes": 492503,
+          "sha256": "6143bf7f01521777d261519cb9fa50934e3469793c53c16759a8e0641f205bf9"
         },
         {
           "path": "traces/tavii-030/complete.json",
-          "bytes": 158,
-          "sha256": "2713c1f8fb0de6ff843d25e48d6597d3134069b10967addfa328b53c3c26ae69"
+          "bytes": 172,
+          "sha256": "150e25b4caa3e0d0ef8b38853e95bce9467109e27d5294f5bdaa3c8a6b4b5094"
         }
       ]
     },
@@ -183,8 +183,8 @@
       "files": [
         {
           "path": "traces/external-001.json",
-          "bytes": 2814,
-          "sha256": "9c272970f7a221c05d2746e2ffe8dc86abae08924129fc4b46d372d2660b7dbc"
+          "bytes": 2895,
+          "sha256": "51627e8e2c8ee59066ad936e5a2aab5a3b78e53016040f42b58be1f0a057c932"
         }
       ],
       "source_repository": "THUDM/AgentInstruct"
@@ -197,8 +197,8 @@
       "files": [
         {
           "path": "traces/external-009.json",
-          "bytes": 10793,
-          "sha256": "6cb2da2da3cb37cba388d7391999e1d2e83b9653730727ffe975cc0f102a68b1"
+          "bytes": 11018,
+          "sha256": "55c10d15f7322919c52b5c181cf6a6adc8e267c8a5783f2f1515c8ce363ec7e0"
         }
       ],
       "source_repository": "THUDM/AgentInstruct"
@@ -211,8 +211,8 @@
       "files": [
         {
           "path": "traces/external-011.json",
-          "bytes": 31545,
-          "sha256": "c6eb06131596f3c1262170cf2fec3577fb46174185b8060a196ea400d1be34df"
+          "bytes": 31870,
+          "sha256": "6cbd6049ce2cfa97b680bce5cc9c63eda68d2c18842544ab1df3bd800d1759d6"
         }
       ],
       "source_repository": "Salesforce/APIGen-MT-5k"
@@ -225,8 +225,8 @@
       "files": [
         {
           "path": "traces/external-017.json",
-          "bytes": 27944,
-          "sha256": "88ad7000c216bb0311cb28d62ff2c6101607e785f4b6b73a5bb164e85375212d"
+          "bytes": 28129,
+          "sha256": "d3bf36fdf6419a2608e78daf31f5cfce3a4f30732e7c1d4abc0b0b57e4a525c5"
         }
       ],
       "source_repository": "Salesforce/APIGen-MT-5k"
@@ -239,8 +239,8 @@
       "files": [
         {
           "path": "traces/external-021.json",
-          "bytes": 18096,
-          "sha256": "77a05eeef14825953b4bbadf15fc4ef28930f5d605c175ff8cebb111856831f2"
+          "bytes": 20841,
+          "sha256": "82efcf47b231d68973894a9823e07e77e8b46f6c8087feb3ee1e62a307936f33"
         }
       ],
       "source_repository": "nvidia/Nemotron-Agentic-v1"
@@ -253,8 +253,8 @@
       "files": [
         {
           "path": "traces/external-024.json",
-          "bytes": 18392,
-          "sha256": "f815387651433683b81e18e65a0304e933b8e61e4f8fee592c93333c1fb1b37d"
+          "bytes": 21160,
+          "sha256": "9c1df30434a83a9381d2989a7020796831997da579de1a4581e27f97701e795c"
         }
       ],
       "source_repository": "nvidia/Nemotron-Agentic-v1"
@@ -267,8 +267,8 @@
       "files": [
         {
           "path": "traces/external-031.json",
-          "bytes": 9212,
-          "sha256": "579388221315068f71a6199475cf3f37f7b208dadf5f7ed31d4e105eae990c45"
+          "bytes": 9621,
+          "sha256": "e628ec2b42fc9332ffe6e0b7c3ffd2eac6216b7e33fe450bf2f748d0b6208a63"
         }
       ],
       "source_repository": "nvidia/Nemotron-Agentic-v1"
@@ -281,8 +281,8 @@
       "files": [
         {
           "path": "traces/external-033.json",
-          "bytes": 36253,
-          "sha256": "b147d6944e7c67f771a95d93e289a70b4644adcbe65c798066c7ebf6346f5c83"
+          "bytes": 37606,
+          "sha256": "b255a9e968a55c02a4d412538321b3c76bf1b4c1786d4928a2a4dfc53c2770d6"
         }
       ],
       "source_repository": "nvidia/Nemotron-Agentic-v1"
