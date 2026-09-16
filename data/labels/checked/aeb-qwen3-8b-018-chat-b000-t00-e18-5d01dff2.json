@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-018-chat-b000-t00-e18-5d01dff2",
+  "clean": false,
+  "findings": [
+    {
+      "family": "evidence_contradiction",
+      "steps": [
+        17
+      ],
+      "description": "The  material (polyester&spandex) is never checked. The memory is hallucinated. It should check the product details to see if the material is met.",
+      "severity": "major",
+      "notes": "AgentErrorBench step 9"
+    }
+  ],
+  "notes": "task_type=webshop; module=memory",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_018_chat_b000_t00_e18-5d01dff2",
+    "original_label": "evidence_contradiction",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

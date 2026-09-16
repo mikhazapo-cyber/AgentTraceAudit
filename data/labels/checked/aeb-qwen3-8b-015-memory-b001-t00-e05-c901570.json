@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-015-memory-b001-t00-e05-c901570",
+  "clean": false,
+  "findings": [
+    {
+      "family": "evidence_contradiction",
+      "steps": [
+        3
+      ],
+      "description": "Misinterpret the meaning and grouping of the provided cuneiform symbols",
+      "severity": "major",
+      "notes": "AgentErrorBench step 2"
+    }
+  ],
+  "notes": "task_type=gaia; module=reflection",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_015_memory_b001_t00_e05-c9015705",
+    "original_label": "evidence_contradiction",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

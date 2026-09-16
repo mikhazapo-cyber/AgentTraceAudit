@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-065",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        1
+      ],
+      "description": "VideoContentAnalysis_Expert: The code is incorrect for the task.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=VideoContentAnalysis_Expert; mistake_step=1",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "05407167-39ec-4d3a-a234-73a9120c325d",
+    "original_label": "The code is incorrect for the task.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

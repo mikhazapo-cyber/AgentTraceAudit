@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-003-memory-b000-t00-e02-8d639e2",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        3
+      ],
+      "description": "Try extract the url but should not do that",
+      "severity": "major",
+      "notes": "AgentErrorBench step 2"
+    }
+  ],
+  "notes": "task_type=gaia; module=planning",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_003_memory_b000_t00_e02-8d639e26",
+    "original_label": "other",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

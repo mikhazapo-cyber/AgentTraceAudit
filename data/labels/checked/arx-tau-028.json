@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-028",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        33
+      ],
+      "description": "At step 33,  the assistant mistakenly believes that it can cancel a subset of a pending order which is not allowed as per domain policy, as a result the entire order got cancelled instead of just the garden hose.",
+      "severity": "major",
+      "notes": "AgentRx category: Intent Plan Misalignment"
+    }
+  ],
+  "notes": "Assistant mistakenly believes that it can cancel a subset of the pending order which is not allowed as per domain policy, as a result the entire order got cancelled instead of just the hose.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "28",
+    "original_label": "Intent Plan Misalignment",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

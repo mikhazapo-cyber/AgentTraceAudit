@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-084",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        7
+      ],
+      "description": "Chess_Expert: The agent directly reaches a conclusion without taking any actual actions.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Chess_Expert; mistake_step=7",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "cca530fc-4052-43b2-b130-b30968d8aa44",
+    "original_label": "The agent directly reaches a conclusion without taking any actual actions.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

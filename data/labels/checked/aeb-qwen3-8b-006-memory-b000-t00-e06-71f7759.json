@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-006-memory-b000-t00-e06-71f7759",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        1
+      ],
+      "description": "LLM limit: not follow the instructions but directly give the answer in the last part",
+      "severity": "major",
+      "notes": "AgentErrorBench step 1"
+    }
+  ],
+  "notes": "task_type=gaia; module=system",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_006_memory_b000_t00_e06-71f77595",
+    "original_label": "other",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

@@ -1,0 +1,75 @@
+{
+ "trace_id": "clean-search",
+ "source_format": "canonical",
+ "task": "What is the temperature in Oslo and in Bergen?",
+ "instructions": "Answer only from tool results. Sequential lookups with different arguments are search.",
+ "tools": [
+  {
+   "name": "get_weather",
+   "description": "Current weather for a city",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "city": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "city"
+    ]
+   }
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "kind": "message",
+   "role": "user",
+   "content": "Temps in Oslo and Bergen?"
+  },
+  {
+   "index": 1,
+   "kind": "tool_call",
+   "role": "assistant",
+   "name": "get_weather",
+   "arguments": {
+    "city": "Oslo"
+   }
+  },
+  {
+   "index": 2,
+   "kind": "tool_result",
+   "role": "tool",
+   "name": "get_weather",
+   "content": "{\"temp_c\": 12, \"condition\": \"cloudy\"}"
+  },
+  {
+   "index": 3,
+   "kind": "tool_call",
+   "role": "assistant",
+   "name": "get_weather",
+   "arguments": {
+    "city": "Bergen"
+   }
+  },
+  {
+   "index": 4,
+   "kind": "tool_result",
+   "role": "tool",
+   "name": "get_weather",
+   "content": "{\"temp_c\": 9, \"condition\": \"rain\"}"
+  },
+  {
+   "index": 5,
+   "kind": "message",
+   "role": "assistant",
+   "content": "Oslo is 12°C and cloudy. Bergen is 9°C and raining."
+  }
+ ],
+ "meta": {
+  "corpus": "construction",
+  "license": "MIT (this repo)",
+  "original_id": "clean-search.json",
+  "label_kind": "construction"
+ }
+}

@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-099",
+  "clean": false,
+  "findings": [
+    {
+      "family": "instruction_violation",
+      "error_class": "broke_explicit_rule",
+      "steps": [
+        34
+      ],
+      "description": "The assistant while exchanging the delivered order items used the incorrect credit card. The task instruction and consequently the user mentions to use the other credit card on file, but it uses the same credit card. This could have been avoided if the assistant had confirmed the payment method with the user before proceeding with the exchange.",
+      "severity": "major",
+      "notes": "AgentRx category: Instruction Adherence Failure"
+    }
+  ],
+  "notes": "The assistant did not confirm the payment method and ultimately used the incorrect credit card while exchanging the delivered order items, leading to an incorrect final outcome.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "99",
+    "original_label": "Instruction Adherence Failure",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

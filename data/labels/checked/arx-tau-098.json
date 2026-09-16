@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-098",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        20
+      ],
+      "description": "The assistant agent first modified the items in the pending orders before modifying the addresses which locked the orders and hence couldn't update the shipping addresses later. The correct sequence should have been vice-versa.",
+      "severity": "major",
+      "notes": "AgentRx category: Intent Plan Misalignment"
+    }
+  ],
+  "notes": "The assistant came up with an incorrect plan and modified the items in the pending orders before updating the shipping addresses, leading to an incorrect final outcome.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "98",
+    "original_label": "Intent Plan Misalignment",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

@@ -1,0 +1,33 @@
+{
+  "trace_id": "aegis-02",
+  "clean": false,
+  "findings": [
+    {
+      "family": "redundant_action",
+      "steps": [
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "description": "Injected FM-1.3 via prompt on agent MagenticOneOrchestrator",
+      "severity": "major",
+      "notes": "AEGIS injected FM-1.3 (prompt)"
+    }
+  ],
+  "notes": "Injected AEGIS error (construction-verified). Not naturalistic gold.",
+  "annotator": "AEGIS injection plan (arXiv:2509.14295)",
+  "review": "injected",
+  "split": "checked",
+  "meta": {
+    "corpus": "aegis",
+    "license": "MIT",
+    "original_id": "magentic+gaia_unknown-model_magentic_one_1_7d140bc2",
+    "original_label": "FM-1.3",
+    "label_kind": "injected",
+    "source_repository": "Fancylalala/AEGIS"
+  },
+  "source_benchmark": "AEGIS",
+  "gold_completeness": "injected_agents"
+}

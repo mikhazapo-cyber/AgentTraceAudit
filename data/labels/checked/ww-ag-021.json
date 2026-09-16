@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-021",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        0
+      ],
+      "description": "Lyrics_Expert: The expert made a factual error. Thriller is not a song but an album.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Lyrics_Expert; mistake_step=0",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "ed58682d-bc52-4baa-9eb0-4eb81e1edacc",
+    "original_label": "The expert made a factual error. Thriller is not a song but an album.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-hc-054",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        15
+      ],
+      "description": "WebSurfer: The agent provides information about the current roster, but the question asks for the roster as of July 2023. THe agent should search for the roster of Hokkaido Nippon-Ham Fighters in 2023.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=WebSurfer; mistake_step=15",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "a0c07678-e491-4bbc-8f0b-07405144218f",
+    "original_label": "The agent provides information about the current roster, but the question asks for the roster as of July 2023. THe agent should search for the roster of Hokkaid",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

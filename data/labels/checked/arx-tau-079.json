@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-079",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        19
+      ],
+      "description": "The task instruction did not specify the color of the 1000ml bottle to be exchanged whether it was red or black. Because of this ambiguity, the user agent picked the black bottle whereas the ground truth as the red variant which did not correspond with the ground truth actions. The red variant instead matched the ground truth.",
+      "severity": "major",
+      "notes": "AgentRx category: Underspecified User Intent"
+    }
+  ],
+  "notes": "The task instruction was ambiguous with regards to the color of the 1000ml bottle to be exchanged which led to incorrect matching with ground truth actions.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "79",
+    "original_label": "Underspecified User Intent",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

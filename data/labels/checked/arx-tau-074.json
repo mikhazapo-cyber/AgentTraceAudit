@@ -1,0 +1,39 @@
+{
+  "trace_id": "arx-tau-074",
+  "clean": false,
+  "findings": [
+    {
+      "family": "instruction_violation",
+      "error_class": "broke_explicit_rule",
+      "steps": [
+        20
+      ],
+      "description": "At step 21, the agent called exchange order items tool on an order which is still in pending status which is invalid.",
+      "severity": "major",
+      "notes": "AgentRx category: Instruction Adherence Failure"
+    },
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        23
+      ],
+      "description": "At step 24, the user agent asked the assistant to cancel the order instead of modifying it contrary to the task instruction provided to the user agent.",
+      "severity": "major",
+      "notes": "AgentRx category: Underspecified User Intent"
+    }
+  ],
+  "notes": "The user agent asked the assistant to cancel the order instead of modifying it contrary to the task instruction provided to the user agent.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "74",
+    "original_label": "Instruction Adherence Failure; Underspecified User Intent",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

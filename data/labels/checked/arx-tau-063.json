@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-063",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        32
+      ],
+      "description": "In step 32, the user agent asked the assistant to add an item to a pending order instead of replacing it with the cheaper item. This is because of unclear original task instruction.",
+      "severity": "major",
+      "notes": "AgentRx category: Underspecified User Intent"
+    }
+  ],
+  "notes": "User agent asked the assistant to add an item to a pending order instead of replacing it with the cheaper item. This is because of unclear/underspecified in the original task instruction.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "63",
+    "original_label": "Underspecified User Intent",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

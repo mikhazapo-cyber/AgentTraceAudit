@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-gpt-4o-013-memory-b001-t00-e05-c9015705",
+  "clean": false,
+  "findings": [
+    {
+      "family": "incorrect_tool_use",
+      "steps": [
+        9
+      ],
+      "description": "wrong number input",
+      "severity": "major",
+      "notes": "AgentErrorBench step 5"
+    }
+  ],
+  "notes": "task_type=gaia; module=action",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "GPT-4o_013_memory_b001_t00_e05-c9015705",
+    "original_label": "incorrect_tool_use",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-082",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        19
+      ],
+      "description": "At step 20, the user agent asked the assistant to the return the tablets from both the orders, however, it was supposed to ask to return all the items from a single order, hence, did not follow the task instruction",
+      "severity": "major",
+      "notes": "AgentRx category: Underspecified User Intent"
+    }
+  ],
+  "notes": "The user agent's request was ambiguous and did not align with the task instruction.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "82",
+    "original_label": "Underspecified User Intent",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

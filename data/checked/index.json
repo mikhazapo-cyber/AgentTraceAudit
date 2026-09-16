@@ -1,0 +1,1733 @@
+{
+  "format_version": 2,
+  "dataset_version": "traceaudit-checked-v1",
+  "annotation_status": "checked",
+  "trace_count": 101,
+  "source_counts": {
+    "agenterrorbench": 18,
+    "aegis": 24,
+    "agentrx": 29,
+    "construction": 6,
+    "whowhen": 24
+  },
+  "note": "Checked / construction-verified traces for tests and precision experiments. Not held-out. AEGIS rows are injected, not naturalistic gold. Existing data/dev is unchanged.",
+  "traces": [
+    {
+      "trace_id": "aeb-gpt-4o-004-memory-b000-t00-e04-5e8c1dcf",
+      "source": "openai-chat",
+      "source_id": "GPT-4o_004_memory_b000_t00_e04-5e8c1dcf",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-gpt-4o-004-memory-b000-t00-e04-5e8c1dcf.json",
+          "bytes": 8931,
+          "sha256": "a050d7822aa38301a56f2679626fe18c0b4ef17b906c548a5ce3b2e1706153a9"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-gpt-4o-013-memory-b001-t00-e05-c9015705",
+      "source": "openai-chat",
+      "source_id": "GPT-4o_013_memory_b001_t00_e05-c9015705",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-gpt-4o-013-memory-b001-t00-e05-c9015705.json",
+          "bytes": 78713,
+          "sha256": "c0f3cb2625deaa67dbce73170f95e8a72aaa7583407d0a3cd4d959b95dcfb19b"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-llama3-3-70b-turbo-004-memory-b000-t00-e",
+      "source": "openai-chat",
+      "source_id": "Llama3.3-70B-Turbo_004_memory_b000_t00_e03-21a3a421",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-llama3-3-70b-turbo-004-memory-b000-t00-e.json",
+          "bytes": 10366,
+          "sha256": "271174f4e45c9c09ac821f9eb9de381d5d7d9c2773da808e6061c466a0d2b3fb"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-llama3-3-70b-turbo-013-memory-b001-t00-e",
+      "source": "openai-chat",
+      "source_id": "Llama3.3-70B-Turbo_013_memory_b001_t00_e04-5e8c1dcf",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-llama3-3-70b-turbo-013-memory-b001-t00-e.json",
+          "bytes": 21248,
+          "sha256": "f213194b2de4e0d2059e03b101a32c8e2ee8e6b34c2f42af737d92a5fa2646ec"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-002-chat-b000-t00-e01-7ab08a46",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_002_chat_b000_t00_e01-7ab08a46",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-002-chat-b000-t00-e01-7ab08a46.json",
+          "bytes": 34434,
+          "sha256": "2419e1be96b1941f5377d2d261295de2ac197a69876e7d9f69deabb4d5a90610"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-003-memory-b000-t00-e02-8d639e2",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_003_memory_b000_t00_e02-8d639e26",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-003-memory-b000-t00-e02-8d639e2.json",
+          "bytes": 84546,
+          "sha256": "6e96698cc49c06bf98a03d3c850bd54339e5ff71d8b5fbf82902b4e9e3ce1bb4"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-004-memory-b000-t00-e04-5e8c1dc",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_004_memory_b000_t00_e04-5e8c1dcf",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-004-memory-b000-t00-e04-5e8c1dc.json",
+          "bytes": 14292,
+          "sha256": "51cd0c4bda169a42bef028e41f6ee568af3c490ca9e0a92147797bee1dc83bb4"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-005-memory-b000-t00-e05-c901570",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_005_memory_b000_t00_e05-c9015705",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-005-memory-b000-t00-e05-c901570.json",
+          "bytes": 40761,
+          "sha256": "e3248c1280ec468ee6cdc7450f69dd5e6537ec835be1f4e05d8ec5f504988ddd"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-006-memory-b000-t00-e06-71f7759",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_006_memory_b000_t00_e06-71f77595",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-006-memory-b000-t00-e06-71f7759.json",
+          "bytes": 33579,
+          "sha256": "5778b828e5395f679c7d7d1878371e309c581022ad34e51484b42958ef419e7b"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-010-memory-b001-t00-e00-7743eba",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_010_memory_b001_t00_e00-7743eba0",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-010-memory-b001-t00-e00-7743eba.json",
+          "bytes": 34495,
+          "sha256": "ce5170142ec6694195e6ed913b06ba4763aaaec948d14ee11ea4597943fcab9d"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-013-chat-b000-t00-e13-eb20423f",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_013_chat_b000_t00_e13-eb20423f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-013-chat-b000-t00-e13-eb20423f.json",
+          "bytes": 67246,
+          "sha256": "ae62ead77f41a4509434773ce64e5d481b319967c7593be22efdbd307df9720a"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-014-chat-b000-t00-e14-1d03d2d8",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_014_chat_b000_t00_e14-1d03d2d8",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-014-chat-b000-t00-e14-1d03d2d8.json",
+          "bytes": 28116,
+          "sha256": "6393a30a795dd13fa44e83bdbfeb94a59a53f93dcda39c16fa128bde486ec380"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-014-memory-b001-t00-e04-5e8c1dc",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_014_memory_b001_t00_e04-5e8c1dcf",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-014-memory-b001-t00-e04-5e8c1dc.json",
+          "bytes": 75954,
+          "sha256": "dbd873de58c0758ebac0b5999e8a1b825bfa81fb52cf7d30772f9c8fd33fff1b"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-015-memory-b001-t00-e05-c901570",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_015_memory_b001_t00_e05-c9015705",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-015-memory-b001-t00-e05-c901570.json",
+          "bytes": 44392,
+          "sha256": "75091f68757a58e841ebf36d45c33c85023f72bdf6beefce8719ee4dd732ee2d"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-016-chat-b000-t00-e16-3c6f739f",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_016_chat_b000_t00_e16-3c6f739f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-016-chat-b000-t00-e16-3c6f739f.json",
+          "bytes": 30589,
+          "sha256": "66b66cda6b96e169079ddcdc53efb09293f4498b32ecd3f2261d32651afa77e6"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-016-memory-b001-t00-e06-71f7759",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_016_memory_b001_t00_e06-71f77595",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-016-memory-b001-t00-e06-71f7759.json",
+          "bytes": 91919,
+          "sha256": "95914b344b705c4f4b3567651c1aaa16fafd9b084d95bc9b29d832bca61a7c16"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-017-chat-b000-t00-e17-fbe4c42d",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_017_chat_b000_t00_e17-fbe4c42d",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-017-chat-b000-t00-e17-fbe4c42d.json",
+          "bytes": 89489,
+          "sha256": "67f73d3e02f10613dcc7f10672170787b545e4739cd1887e4646cade36a8ede4"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-018-chat-b000-t00-e18-5d01dff2",
+      "source": "openai-chat",
+      "source_id": "Qwen3-8B_018_chat_b000_t00_e18-5d01dff2",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aeb-qwen3-8b-018-chat-b000-t00-e18-5d01dff2.json",
+          "bytes": 72403,
+          "sha256": "eb7fa4c42e315277bd557dec2dfebb4c9513d9037c61aa45ec1f0aab40bac5a4"
+        }
+      ],
+      "source_repository": "davide221/agenterrorbench",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "license": "unspecified"
+    },
+    {
+      "trace_id": "aegis-00",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_llm_debate_7_f8168d42",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-00.json",
+          "bytes": 21479,
+          "sha256": "cb0d375934ce70ef65d47c1bfeb93757027a5a545b1e81200ea353041aac8006"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-01",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_dylan_2_fcd38347",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-01.json",
+          "bytes": 17922,
+          "sha256": "50e9f2d6245d2f09b2c6c1aa4f577923b77278748b7fbd93f502fc6837649edc"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-02",
+      "source": "openai-chat",
+      "source_id": "magentic+gaia_unknown-model_magentic_one_1_7d140bc2",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-02.json",
+          "bytes": 17788,
+          "sha256": "ab35603c804a56fb0843b451b9ce35833ce10490448a0cbffde449e41e113f56"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-03",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_3_01533881",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-03.json",
+          "bytes": 51640,
+          "sha256": "f3d3e4f45e5926a188c9c80fcf98b4211836c2f0b8b5a7fd240f0c8773007306"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-04",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_dylan_1_6a7f3cfc",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-04.json",
+          "bytes": 3115,
+          "sha256": "964381815f8c61c115a40ee35d7a58ea6edd5128d4e90bfcc643f041a6265327"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-05",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_2_8187df17",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-05.json",
+          "bytes": 71960,
+          "sha256": "bbed6976dbc95c166de4b3c4bb75654f378d3c699f05ea43073c53c72eaa12a1"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-06",
+      "source": "openai-chat",
+      "source_id": "SciBench_gpt-4o-mini_llm_debate_4_292afc1d",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-06.json",
+          "bytes": 27167,
+          "sha256": "1cbed8c8bd8b5ea1a20264c9cba949adce2f369c873875a39e0c38969dadde6b"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-07",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_1_0d848a86",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-07.json",
+          "bytes": 26023,
+          "sha256": "b01120e75f87124f1160d110cb16f2445d33e8ccdf29de520d57de1a4a337efa"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-08",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_dylan_15_f44ee0a1",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-08.json",
+          "bytes": 19894,
+          "sha256": "7fd41167bc87ec342e31bca8cb76aa68b3cbce2d8405117c2455f537c25d8c98"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-09",
+      "source": "openai-chat",
+      "source_id": "MMLU_gpt-4o-mini_llm_debate_2_aabd8dec",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-09.json",
+          "bytes": 38342,
+          "sha256": "69ebb07ca55242ca31f8cbccc4d6eb72fbd132762911972c684117bb788a3a20"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-10",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_6_f58ee03d",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-10.json",
+          "bytes": 33667,
+          "sha256": "a71a7ce4d9b3fcdededa4aeb588407cdbbb0f53856897aeed8a8f754ac1c5c4f"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-11",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_dylan_3_296a8ea3",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-11.json",
+          "bytes": 17939,
+          "sha256": "08538c7e8d1617ed3fc84b78375ea2685a6b23ed7bdb33cfc773687b0cfba3ad"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-12",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_dylan_8_2c90f7b0",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-12.json",
+          "bytes": 15893,
+          "sha256": "2a636a19e79e6c75c9698147a0515b9d932f501a7984e6862f17992ebb0061b0"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-13",
+      "source": "openai-chat",
+      "source_id": "SciBench_gpt-4o-mini_llm_debate_26_f7e67c1c",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-13.json",
+          "bytes": 24184,
+          "sha256": "cf484473dfe9af1c7920868f34f7491ea6f33f0133c1230d5f51529b1ad7ea58"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-15",
+      "source": "openai-chat",
+      "source_id": "HumanEval_gpt-4o-mini_llm_debate_6_3eeaf7fe",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-15.json",
+          "bytes": 29201,
+          "sha256": "9881955642e4cddad8942d582a7c74f989398ad0571c5427456f2aa11005b758"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-16",
+      "source": "openai-chat",
+      "source_id": "SciBench_gpt-4o-mini_dylan_1_3338b994",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-16.json",
+          "bytes": 29602,
+          "sha256": "44d0c01d699ada9fea21f648280acde72642b17783d8efe079d9683f0ecf7b0c"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-18",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_30_67a24629",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-18.json",
+          "bytes": 43176,
+          "sha256": "6130fad0a48bed92f04c27b7c90b60e3d0d1e4cf66673bd47356e5913cac0578"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-19",
+      "source": "openai-chat",
+      "source_id": "MMLU_gpt-4o-mini_llm_debate_4_3543fd3f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-19.json",
+          "bytes": 17145,
+          "sha256": "e6fa97b8193ef299b77358fa0383585c3c0a964f59bab4df6717c2ab710a82bf"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-20",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_8_fc7eeece",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-20.json",
+          "bytes": 18159,
+          "sha256": "fd73180e6744e7b1af37983bef0123f0a3e0d056a29b5d4b87feafa41bfc14c9"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-21",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_7_f7dbf3fb",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-21.json",
+          "bytes": 60314,
+          "sha256": "d684edc04d4bb7bc7c05f51f0e4c74637e692203e045c4ecff7067dfb397d7e6"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-23",
+      "source": "openai-chat",
+      "source_id": "smol+gaia_gpt-4o-mini_smoagents_40_01d6fe71",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-23.json",
+          "bytes": 26230,
+          "sha256": "d55e31ec5cd55124aa7d22b3f71e6349bc83818a7efe1dde49c8b53b9fbd376a"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-25",
+      "source": "openai-chat",
+      "source_id": "magentic+gaia_unknown-model_magentic_one_6_34ef60a9",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-25.json",
+          "bytes": 103344,
+          "sha256": "a3a0d23562a5145b6518a58d28fddefa63c2bc82d8ea099f13cb489b9846daa1"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-26",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_dylan_13_86b2ee7f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-26.json",
+          "bytes": 12222,
+          "sha256": "db36c0d0e28a4c1ff993f39443ec1677b88243a0122e5231c0b84e24daeccc31"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "aegis-27",
+      "source": "openai-chat",
+      "source_id": "GSM8K_gpt-4o-mini_dylan_16_8eaa62ba",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/aegis-27.json",
+          "bytes": 17624,
+          "sha256": "37c69b60fa4b743c255936c458269942842ed530fd11534493d3c250c311181c"
+        }
+      ],
+      "source_repository": "Fancylalala/AEGIS",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "arx-tau-002",
+      "source": "openai-chat",
+      "source_id": "2",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-002.json",
+          "bytes": 29240,
+          "sha256": "baa7543c1c8ce6b539351ae542b3448d6530214d50d02f97e3d35b9af0606f52"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-003",
+      "source": "openai-chat",
+      "source_id": "3",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-003.json",
+          "bytes": 29966,
+          "sha256": "b24043bd8acae05a209b3780ae27adbd00e99a73df43a148ef6aaff599e2e8e3"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-004",
+      "source": "openai-chat",
+      "source_id": "4",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-004.json",
+          "bytes": 36014,
+          "sha256": "1f03dc6da54622ff3e5dfe2a24f81063b1077adaee0368b4a730e32d343f32f7"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-012",
+      "source": "openai-chat",
+      "source_id": "12",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-012.json",
+          "bytes": 21795,
+          "sha256": "349f1820beb845023641599bb7bb1bdc60c9d3685c1fbf94f82ed87877c176ff"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-020",
+      "source": "openai-chat",
+      "source_id": "20",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-020.json",
+          "bytes": 58039,
+          "sha256": "bcf0c8490f50fe63b4558d5bb5b20ac3250e4d3628180dc7799847039a893d1a"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-021",
+      "source": "openai-chat",
+      "source_id": "21",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-021.json",
+          "bytes": 35397,
+          "sha256": "5eec0d6bede8e64523398c6a2c1495c6519f6c9ea2cd8b48f48328031f49c33f"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-028",
+      "source": "openai-chat",
+      "source_id": "28",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-028.json",
+          "bytes": 32545,
+          "sha256": "d749dfacbb5f52b526745d13a18c36b52e24fc1f481c7e89c0425494d9e680fd"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-031",
+      "source": "openai-chat",
+      "source_id": "31",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-031.json",
+          "bytes": 28511,
+          "sha256": "08affc268a155ddb3704db9862c0a2bdb951bd36514c7b47f44bcfab8fa8b6e8"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-032",
+      "source": "openai-chat",
+      "source_id": "32",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-032.json",
+          "bytes": 28084,
+          "sha256": "6f4907042e8b9f81a66423289f1c1bd3d972a470e9b299b08afcd944aa643826"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-034",
+      "source": "openai-chat",
+      "source_id": "34",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-034.json",
+          "bytes": 27031,
+          "sha256": "d57d8b6a378a209bd1974d613e3948824fd013840c50d13332d7a5b07475b927"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-038",
+      "source": "openai-chat",
+      "source_id": "38",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-038.json",
+          "bytes": 36439,
+          "sha256": "d11534f1525e981816034f8c72b969e7068f8d715192f936ee6327ff218370a0"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-039",
+      "source": "openai-chat",
+      "source_id": "39",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-039.json",
+          "bytes": 23444,
+          "sha256": "0d6e0796d20c0ca697670b6a80c0983b5d978d87a5695d7e92869da6beb39012"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-041",
+      "source": "openai-chat",
+      "source_id": "41",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-041.json",
+          "bytes": 26627,
+          "sha256": "012daa42e8adc1319739a8f42e6f34cc32728e18a07cd73cefb1efeb37caec7a"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-047",
+      "source": "openai-chat",
+      "source_id": "47",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-047.json",
+          "bytes": 20497,
+          "sha256": "ff3147eb9b191f316ddf383f47ed29b65bdd678fbfb7903d7b4521ff8804c205"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-055",
+      "source": "openai-chat",
+      "source_id": "55",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-055.json",
+          "bytes": 34812,
+          "sha256": "74b403477e2731b0ee290b312288d0a83ea8727577181f9c3edeb61aa41a945b"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-059",
+      "source": "openai-chat",
+      "source_id": "59",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-059.json",
+          "bytes": 22844,
+          "sha256": "625186b4ca7cd8d9f9b91398d72b05d39b96e95496362c6746fbd1915fee163d"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-063",
+      "source": "openai-chat",
+      "source_id": "63",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-063.json",
+          "bytes": 25773,
+          "sha256": "e77955a64580325d12a4911c3c04f3c625baf78f4d24ebbbfc36908c2585083d"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-071",
+      "source": "openai-chat",
+      "source_id": "71",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-071.json",
+          "bytes": 30604,
+          "sha256": "a7676471af85c4c529febb3964668fb5de732afb7ecc16e5ea19a1f1a028841d"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-072",
+      "source": "openai-chat",
+      "source_id": "72",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-072.json",
+          "bytes": 28019,
+          "sha256": "0c96a6356285d0b1de4f7d1f9ba8a0547116b8bfaacff5d2da5dcc13e9408210"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-074",
+      "source": "openai-chat",
+      "source_id": "74",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-074.json",
+          "bytes": 25645,
+          "sha256": "4316f22f47eea0340aa35fdde90702228a0e7f905a4aa93cf24d88ba81bc3c9c"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-079",
+      "source": "openai-chat",
+      "source_id": "79",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-079.json",
+          "bytes": 27036,
+          "sha256": "6af26c7bf787066e4d85b6854f42d11ca470224a09ade632fc42ab5bff940a8b"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-080",
+      "source": "openai-chat",
+      "source_id": "80",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-080.json",
+          "bytes": 23245,
+          "sha256": "8ef8d03a14bd6da7783b90d5cdc3edd1a99453aede3fed26b9de3473675bc007"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-082",
+      "source": "openai-chat",
+      "source_id": "82",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-082.json",
+          "bytes": 26203,
+          "sha256": "57e3a9474d96856437b88d24b4475c58cdec3548484cc6bd237228cf809bf8a9"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-087",
+      "source": "openai-chat",
+      "source_id": "87",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-087.json",
+          "bytes": 27524,
+          "sha256": "79700e5b2e8519a7f56ccdd032d5438efad0873dd9c90897c1606246548d444d"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-091",
+      "source": "openai-chat",
+      "source_id": "91",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-091.json",
+          "bytes": 34897,
+          "sha256": "5358f811aaef0f54747a4eeb3516931d98997a06813ecec3ac8cbf8795e0936e"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-098",
+      "source": "openai-chat",
+      "source_id": "98",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-098.json",
+          "bytes": 27807,
+          "sha256": "37cc8604825a9486d06f5977ef936063cb33f0f7cd6859f7119b20e36509eef9"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-099",
+      "source": "openai-chat",
+      "source_id": "99",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-099.json",
+          "bytes": 42272,
+          "sha256": "15a1939fe565630e1fddf939564cd6dba9833725741ee94543d95eed716d40c7"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-104",
+      "source": "openai-chat",
+      "source_id": "104",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-104.json",
+          "bytes": 37654,
+          "sha256": "7fca7795e472f1eb25a938cb11867d179373d336e4cce3537a6b1c09093c67e5"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "arx-tau-105",
+      "source": "openai-chat",
+      "source_id": "105",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/arx-tau-105.json",
+          "bytes": 36804,
+          "sha256": "b2aa9e866a8fcaad4cd6655cece724550178979b62cc4bb602bbd49a30f31cbe"
+        }
+      ],
+      "source_repository": "microsoft/AgentRx",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "trace_id": "const-auth-skip",
+      "source": "canonical",
+      "source_id": "auth-skip.json",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/const-auth-skip.json",
+          "bytes": 1615,
+          "sha256": "254fb5affa2d0e34a38ee10665a569e97d95ca792e7a5a5136621a6f539ccb3e"
+        }
+      ],
+      "source_repository": "examples/",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "const-clean-retry",
+      "source": "canonical",
+      "source_id": "clean-retry.json",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/const-clean-retry.json",
+          "bytes": 1336,
+          "sha256": "5f48b23723eea27bbed6ad5f53ae656788f184a127d0bab0cf89a0c41a6b32ac"
+        }
+      ],
+      "source_repository": "examples/",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "const-clean-search",
+      "source": "canonical",
+      "source_id": "clean-search.json",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/const-clean-search.json",
+          "bytes": 1475,
+          "sha256": "e5ad7d4987ebe87c2f40ce0a4611c84879c24544661b50995505bf4d8e1fc02d"
+        }
+      ],
+      "source_repository": "examples/",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "const-clean-skill",
+      "source": "canonical",
+      "source_id": "clean-skill.json",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/const-clean-skill.json",
+          "bytes": 1800,
+          "sha256": "8c4f5576a382d1521a3a4cf844be0e95170a178f2bbb308c055709a6bdf3051f"
+        }
+      ],
+      "source_repository": "examples/",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "const-clean-verify",
+      "source": "canonical",
+      "source_id": "clean-verify.json",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/const-clean-verify.json",
+          "bytes": 1997,
+          "sha256": "1decbeff3047e619c78216b560d54452b7df489b283c44081b1aa1827de1dcf5"
+        }
+      ],
+      "source_repository": "examples/",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "const-contradict",
+      "source": "canonical",
+      "source_id": "contradict.json",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/const-contradict.json",
+          "bytes": 1142,
+          "sha256": "c9500cd0a5284189b4717b50eef9948ce11903142a08e7fa3cf86cda349311b7"
+        }
+      ],
+      "source_repository": "examples/",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-012",
+      "source": "openai-chat",
+      "source_id": "db4fd70a-2d37-40ea-873f-9433dc5e301f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-012.json",
+          "bytes": 9185,
+          "sha256": "09152b6bbab030d788e0b1968f78afc04b3086b0c726eda0a6a8c94291c5932f"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-021",
+      "source": "openai-chat",
+      "source_id": "ed58682d-bc52-4baa-9eb0-4eb81e1edacc",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-021.json",
+          "bytes": 8383,
+          "sha256": "4f739d3c1f91ff1fce3a8ceb4fc263c5613502566fc020d7663444198380250a"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-038",
+      "source": "openai-chat",
+      "source_id": "305ac316-eef6-4446-960a-92d80d542f82",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-038.json",
+          "bytes": 9336,
+          "sha256": "40f10a79f2bc79e95e1abe3cfd5699e0f53de41001c61cd4ab5059294cd53a7b"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-047",
+      "source": "openai-chat",
+      "source_id": "0bb3b44a-ede5-4db5-a520-4e844b0079c5",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-047.json",
+          "bytes": 6069,
+          "sha256": "a19a158f16c40fa862d6f10a0c5ddd96fbf7e0184c9cbcded2fb4372b400b3eb"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-053",
+      "source": "openai-chat",
+      "source_id": "a7feb290-76bb-4cb7-8800-7edaf7954f2f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-053.json",
+          "bytes": 9948,
+          "sha256": "6fa1686a7016095aa0eb684b9eb46e8aab3b41836a4c914c9e2a1286bc5c20a7"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-065",
+      "source": "openai-chat",
+      "source_id": "05407167-39ec-4d3a-a234-73a9120c325d",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-065.json",
+          "bytes": 10278,
+          "sha256": "d9fd23acac36e1bc4aff544f254f1a9f56d4037ede4e7722dec288667728d731"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-066",
+      "source": "openai-chat",
+      "source_id": "87c610df-bef7-4932-b950-1d83ef4e282b",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-066.json",
+          "bytes": 10058,
+          "sha256": "d6a5a7bbdc7745490e590456b9a8cdf8b10cb133f69cec2bd62753259a8aaf7e"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-081",
+      "source": "openai-chat",
+      "source_id": "a56f1527-3abf-41d6-91f8-7296d6336c3f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-081.json",
+          "bytes": 9669,
+          "sha256": "630c39845d0da483b86c0124537314ddb3485128d0e0a9475866f965ce15df64"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-084",
+      "source": "openai-chat",
+      "source_id": "cca530fc-4052-43b2-b130-b30968d8aa44",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-084.json",
+          "bytes": 9652,
+          "sha256": "014c39fbac5e15c75c174fe0034f1b45566e90653a3d32bf698350ddeb2eeea5"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-093",
+      "source": "openai-chat",
+      "source_id": "08c0b6e9-1b43-4c2e-ae55-4e3fce2c2715",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-093.json",
+          "bytes": 7272,
+          "sha256": "11aaabebe36fcc143b4be4bbae4bc4f7f070913d4cc2e6daf26845632839221c"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-097",
+      "source": "openai-chat",
+      "source_id": "4fc2f1ae-8625-45b5-ab34-ad4433bc21f8",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-097.json",
+          "bytes": 10152,
+          "sha256": "9d20eb551eb7c6d113c1627bd6b902d998df7b4d940ff46f4a02a54babb14e75"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-ag-102",
+      "source": "openai-chat",
+      "source_id": "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-ag-102.json",
+          "bytes": 8726,
+          "sha256": "6d3bfccdc253e4799bfa4ca40553569c2c566f6d5560588a81883871eafb4eb4"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-005",
+      "source": "openai-chat",
+      "source_id": "ed58682d-bc52-4baa-9eb0-4eb81e1edacc",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-005.json",
+          "bytes": 21101,
+          "sha256": "9306fbd882c2a9e9c9c2cdf8ea110574b7e184c79c7de7652f4b1bd2fc1f8916"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-006",
+      "source": "openai-chat",
+      "source_id": "e6bc98089608217e45b6956a46518fe3cce64a799b3ac43c6974c449ae14c408",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-006.json",
+          "bytes": 10518,
+          "sha256": "9e725fb5da02f0abf1c521164217c4fb5ce1e6b371f5bcff5c7c59af641e4973"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-012",
+      "source": "openai-chat",
+      "source_id": "2dfc4c37-fec1-4518-84a7-10095d30ad75",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-012.json",
+          "bytes": 21662,
+          "sha256": "9f0d08e627a01a524a5363e1442565c9f2bef44ebb132a947aa622452fcd1462"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-024",
+      "source": "openai-chat",
+      "source_id": "42576abe-0deb-4869-8c63-225c2d75a95a",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-024.json",
+          "bytes": 7288,
+          "sha256": "7ff5c29651f13c900fcd061b1c5ea605f7d287bddcc27a13992df48c5016bbda"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-029",
+      "source": "openai-chat",
+      "source_id": "73c1b9fe-ee1d-4cf4-96ca-35c08f97b054",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-029.json",
+          "bytes": 22447,
+          "sha256": "fdf7b6939f9719431fd2487b814897ad0d2ce7caf2a74872436d3ce725540fdb"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-032",
+      "source": "openai-chat",
+      "source_id": "929b45f34805280d77c61d1e093e3d4e551d77ddb6ecd73552b12b1af286388d",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-032.json",
+          "bytes": 15803,
+          "sha256": "04bc32eda477725cacac7bec5f95b068a1ba348548cc0476317cdbf29b36d8bd"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-033",
+      "source": "openai-chat",
+      "source_id": "72e110e7-464c-453c-a309-90a95aed6538",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-033.json",
+          "bytes": 16617,
+          "sha256": "86537ceb0d10dc490bf9dea25b2cc9086fedc5bad71cc62b7aea82068ba846b3"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-034",
+      "source": "openai-chat",
+      "source_id": "56137764-b4e0-45b8-9c52-1866420c3df5",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-034.json",
+          "bytes": 14450,
+          "sha256": "bb86f39b3b3300b81fd03dae81bf85fe080b05b285a1ac9452aacfc7c11c7145"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-043",
+      "source": "openai-chat",
+      "source_id": "db4fd70a-2d37-40ea-873f-9433dc5e301f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-043.json",
+          "bytes": 17903,
+          "sha256": "560e09cf61e1d04a11b16f0b62853384a143aeeb9749658967f6f1c99acc610e"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-048",
+      "source": "openai-chat",
+      "source_id": "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-048.json",
+          "bytes": 13131,
+          "sha256": "936a7733eeec3263e9f9ee8ff28eb685d16cd395a5acb28a42232dea3c1abd7d"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-054",
+      "source": "openai-chat",
+      "source_id": "a0c07678-e491-4bbc-8f0b-07405144218f",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-054.json",
+          "bytes": 19458,
+          "sha256": "dbdb0e1692e5dedd7461459de47741354f1f4373b13efaa8d479be66817ecbd9"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    },
+    {
+      "trace_id": "ww-hc-057",
+      "source": "openai-chat",
+      "source_id": "3af8028c2a59e28ca88baff0e6d91f2a9f170c5ef91003f1c8406755a2760ad4",
+      "format": "native_json",
+      "files": [
+        {
+          "path": "traces/ww-hc-057.json",
+          "bytes": 21531,
+          "sha256": "eb0065bed0aa0e66cab5acaf64d9f4b228dd862830e9c977046dd9da885b1e40"
+        }
+      ],
+      "source_repository": "Kevin355/Who_and_When",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "license": "MIT"
+    }
+  ]
+}

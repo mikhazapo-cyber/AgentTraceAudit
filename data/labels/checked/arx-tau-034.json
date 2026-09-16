@@ -1,0 +1,50 @@
+{
+  "trace_id": "arx-tau-034",
+  "clean": false,
+  "findings": [
+    {
+      "family": "incorrect_tool_use",
+      "error_class": "malformed_call",
+      "steps": [
+        16
+      ],
+      "description": "At step 17, the assistant uses modify order to cancel a subset of orders, however modify orders also need to have a replacement, which it did not provide resulting in an illegal tool call",
+      "severity": "major",
+      "notes": "AgentRx category: Invalid Invocation"
+    },
+    {
+      "family": "incorrect_tool_use",
+      "error_class": "malformed_call",
+      "steps": [
+        21,
+        22
+      ],
+      "description": "At step 21, the assistant tries to bypass the modify tool argument restriction by trying to modify the item_id with the same item_id in order to try to cancel it",
+      "severity": "major",
+      "notes": "AgentRx category: Invalid Invocation"
+    },
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        33
+      ],
+      "description": "At step 30, the user does not ask the assistant to modify the address of the current pending order but is clearly a part of the overall task instruction.",
+      "severity": "major",
+      "notes": "AgentRx category: Underspecified User Intent"
+    }
+  ],
+  "notes": "Assistant used modify order to cancel a subset of orders, but modify order requires a replacement which was not provided - illegal tool call.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "34",
+    "original_label": "Invalid Invocation; Invalid Invocation; Underspecified User Intent",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

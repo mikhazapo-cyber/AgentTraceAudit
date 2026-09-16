@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-053",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        1
+      ],
+      "description": "Verification_Expert: The Verification_Expert provided incorrect code to solve the task.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Verification_Expert; mistake_step=1",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "a7feb290-76bb-4cb7-8800-7edaf7954f2f",
+    "original_label": "The Verification_Expert provided incorrect code to solve the task.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

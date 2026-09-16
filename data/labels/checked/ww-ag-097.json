@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-097",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        2
+      ],
+      "description": "WikipediaHistory_Expert: The code provided by WikipediaHistory_Expert is incorrect and does not return any useful results.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=WikipediaHistory_Expert; mistake_step=2",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "4fc2f1ae-8625-45b5-ab34-ad4433bc21f8",
+    "original_label": "The code provided by WikipediaHistory_Expert is incorrect and does not return any useful results.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

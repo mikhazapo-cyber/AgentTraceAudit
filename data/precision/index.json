@@ -1,0 +1,1223 @@
+{
+  "format_version": 2,
+  "dataset_version": "traceaudit-precision-v1",
+  "note": "Offline precision-experiment sample. Pair traces with data/labels/checked. Do not quote as held-out. No live LLM spend path.",
+  "trace_count": 101,
+  "n_human": 71,
+  "n_injected": 24,
+  "n_construction": 6,
+  "n_clean": 4,
+  "n_dirty": 97,
+  "traces": [
+    {
+      "trace_id": "aeb-gpt-4o-004-memory-b000-t00-e04-5e8c1dcf",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-gpt-4o-013-memory-b001-t00-e05-c9015705",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "incorrect_tool_use"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-llama3-3-70b-turbo-004-memory-b000-t00-e",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-llama3-3-70b-turbo-013-memory-b001-t00-e",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-002-chat-b000-t00-e01-7ab08a46",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-003-memory-b000-t00-e02-8d639e2",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-004-memory-b000-t00-e04-5e8c1dc",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-005-memory-b000-t00-e05-c901570",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-006-memory-b000-t00-e06-71f7759",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-010-memory-b001-t00-e00-7743eba",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-013-chat-b000-t00-e13-eb20423f",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-014-chat-b000-t00-e14-1d03d2d8",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-014-memory-b001-t00-e04-5e8c1dc",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-015-memory-b001-t00-e05-c901570",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-016-chat-b000-t00-e16-3c6f739f",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-016-memory-b001-t00-e06-71f7759",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-017-chat-b000-t00-e17-fbe4c42d",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aeb-qwen3-8b-018-chat-b000-t00-e18-5d01dff2",
+      "corpus": "agenterrorbench",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-00",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-01",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-02",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "redundant_action"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-03",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "ignored_feedback"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-04",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-05",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-06",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-07",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "redundant_action"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-08",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "ignored_feedback"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-09",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-10",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-11",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-12",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "redundant_action"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-13",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "ignored_feedback"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-15",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-16",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-18",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "ignored_feedback"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-19",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-20",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-21",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-23",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "ignored_feedback"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-25",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-26",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "unsupported_success"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "aegis-27",
+      "corpus": "aegis",
+      "label_kind": "injected",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "redundant_action"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-002",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 2,
+      "families": [
+        "evidence_contradiction",
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-003",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 2,
+      "families": [
+        "evidence_contradiction",
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-004",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-012",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-020",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 4,
+      "families": [
+        "evidence_contradiction",
+        "incorrect_tool_use"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-021",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 2,
+      "families": [
+        "instruction_violation",
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-028",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-031",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-032",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-034",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 3,
+      "families": [
+        "incorrect_tool_use",
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-038",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-039",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-041",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-047",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-055",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-059",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-063",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-071",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 2,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-072",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-074",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 2,
+      "families": [
+        "instruction_violation",
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-079",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-080",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-082",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-087",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-091",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-098",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-099",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-104",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "arx-tau-105",
+      "corpus": "agentrx",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "const-auth-skip",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "instruction_violation"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "const-clean-retry",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "clean": true,
+      "n_findings": 0,
+      "families": [],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "const-clean-search",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "clean": true,
+      "n_findings": 0,
+      "families": [],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "const-clean-skill",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "clean": true,
+      "n_findings": 0,
+      "families": [],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "const-clean-verify",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "clean": true,
+      "n_findings": 0,
+      "families": [],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "const-contradict",
+      "corpus": "construction",
+      "label_kind": "construction",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "evidence_contradiction"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-012",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-021",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-038",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-047",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-053",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-065",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-066",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-081",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-084",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-093",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-097",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-ag-102",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-005",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-006",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-012",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-024",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-029",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-032",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-033",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-034",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-043",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-048",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-054",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    },
+    {
+      "trace_id": "ww-hc-057",
+      "corpus": "whowhen",
+      "label_kind": "human",
+      "clean": false,
+      "n_findings": 1,
+      "families": [
+        "other"
+      ],
+      "dataset": "data/checked",
+      "labels": "data/labels/checked"
+    }
+  ]
+}

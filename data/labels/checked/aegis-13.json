@@ -1,0 +1,30 @@
+{
+  "trace_id": "aegis-13",
+  "clean": false,
+  "findings": [
+    {
+      "family": "ignored_feedback",
+      "steps": [
+        10,
+        12
+      ],
+      "description": "Ignore other agents via response corruption",
+      "severity": "major",
+      "notes": "AEGIS injected FM-2.5 (response_corruption)"
+    }
+  ],
+  "notes": "Injected AEGIS error (construction-verified). Not naturalistic gold.",
+  "annotator": "AEGIS injection plan (arXiv:2509.14295)",
+  "review": "injected",
+  "split": "checked",
+  "meta": {
+    "corpus": "aegis",
+    "license": "MIT",
+    "original_id": "SciBench_gpt-4o-mini_llm_debate_26_f7e67c1c",
+    "original_label": "FM-2.5",
+    "label_kind": "injected",
+    "source_repository": "Fancylalala/AEGIS"
+  },
+  "source_benchmark": "AEGIS",
+  "gold_completeness": "injected_agents"
+}

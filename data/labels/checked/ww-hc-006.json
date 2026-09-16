@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-hc-006",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        5
+      ],
+      "description": "Orchestrator: The agent does not verify the information and check whether the highest price of the house is located at Mission Bay. The search result is not accurate.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Orchestrator; mistake_step=5",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "e6bc98089608217e45b6956a46518fe3cce64a799b3ac43c6974c449ae14c408",
+    "original_label": "The agent does not verify the information and check whether the highest price of the house is located at Mission Bay. The search result is not accurate.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

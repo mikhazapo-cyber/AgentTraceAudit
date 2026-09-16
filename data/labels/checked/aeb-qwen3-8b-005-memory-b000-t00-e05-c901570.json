@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-005-memory-b000-t00-e05-c901570",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        5
+      ],
+      "description": "Not fully satisfy the constraint",
+      "severity": "major",
+      "notes": "AgentErrorBench step 3"
+    }
+  ],
+  "notes": "task_type=gaia; module=planning",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_005_memory_b000_t00_e05-c9015705",
+    "original_label": "other",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

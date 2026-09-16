@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-102",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        1
+      ],
+      "description": "Filmography_Expert: The list of films provided by the Filmography_Expert is incorrect.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Filmography_Expert; mistake_step=1",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+    "original_label": "The list of films provided by the Filmography_Expert is incorrect.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "trace_id": "const-auth-skip",
+  "clean": false,
+  "findings": [
+    {
+      "family": "instruction_violation",
+      "error_class": "skipped_required_check",
+      "steps": [
+        1
+      ],
+      "description": "refund_order called before find_user_id, violating the authenticate-first rule.",
+      "severity": "major",
+      "notes": "construction: examples/auth-skip.json"
+    }
+  ],
+  "notes": "Construction-verified instruction skip.",
+  "annotator": "repo construction examples",
+  "review": "construction",
+  "split": "checked",
+  "meta": {
+    "corpus": "construction",
+    "license": "MIT",
+    "original_id": "auth-skip.json",
+    "original_label": "construction",
+    "label_kind": "construction",
+    "source_repository": "examples/"
+  }
+}

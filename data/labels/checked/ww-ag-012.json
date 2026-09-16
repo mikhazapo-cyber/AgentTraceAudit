@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-012",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        1
+      ],
+      "description": "Verification_Expert: The agent uses its internal knowledge to list the stops on the Franklin-Foxboro line instead of searching for the most accurate and up-to-date information available as of May 2023.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Verification_Expert; mistake_step=1",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "db4fd70a-2d37-40ea-873f-9433dc5e301f",
+    "original_label": "The agent uses its internal knowledge to list the stops on the Franklin-Foxboro line instead of searching for the most accurate and up-to-date information avail",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

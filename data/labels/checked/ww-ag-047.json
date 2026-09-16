@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-ag-047",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        1
+      ],
+      "description": "Mesopotamian_Number_Systems_Expert: The conversion process from the Babylonian number system to decimal numbers is flawed, which would result in an incorrect calculation.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Mesopotamian_Number_Systems_Expert; mistake_step=1",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "0bb3b44a-ede5-4db5-a520-4e844b0079c5",
+    "original_label": "The conversion process from the Babylonian number system to decimal numbers is flawed, which would result in an incorrect calculation.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

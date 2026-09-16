@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-002-chat-b000-t00-e01-7ab08a46",
+  "clean": false,
+  "findings": [
+    {
+      "family": "unsupported_success",
+      "steps": [
+        9
+      ],
+      "description": "task asked for henley, but the product is a t-shirt. The plan should have been to refine the search query to include 'henley' in the search query.",
+      "severity": "major",
+      "notes": "AgentErrorBench step 5"
+    }
+  ],
+  "notes": "task_type=webshop; module=reflection",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_002_chat_b000_t00_e01-7ab08a46",
+    "original_label": "unsupported_success",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

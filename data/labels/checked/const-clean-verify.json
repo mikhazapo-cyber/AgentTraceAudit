@@ -1,0 +1,17 @@
+{
+  "trace_id": "const-clean-verify",
+  "clean": true,
+  "findings": [],
+  "notes": "Construction-verified required extra verification after a transfer. Clean.",
+  "annotator": "repo construction examples",
+  "review": "construction",
+  "split": "checked",
+  "meta": {
+    "corpus": "construction",
+    "license": "MIT",
+    "original_id": "clean-verify.json",
+    "original_label": "construction",
+    "label_kind": "construction",
+    "source_repository": "examples/"
+  }
+}

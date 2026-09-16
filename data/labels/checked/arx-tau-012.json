@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-012",
+  "clean": false,
+  "findings": [
+    {
+      "family": "instruction_violation",
+      "error_class": "broke_explicit_rule",
+      "steps": [
+        18
+      ],
+      "description": "At step 19, the assistant agent did not ask user for confirmation and payment method before initiating return.",
+      "severity": "major",
+      "notes": "AgentRx category: Instruction Adherence Failure"
+    }
+  ],
+  "notes": "Assistant did not ask user for confirmation and payment method before initiating return.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "12",
+    "original_label": "Instruction Adherence Failure",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

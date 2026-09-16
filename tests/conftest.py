@@ -13,20 +13,5 @@ def repo_root() -> Path:
 
 
 @pytest.fixture
-def dev_dataset() -> Path:
-    return ROOT / "data" / "dev"
-
-
-@pytest.fixture
-def dev_labels() -> Path:
-    return ROOT / "data" / "labels" / "dev"
-
-
-@pytest.fixture
-def synthetic_dataset() -> Path:
-    return ROOT / "data" / "synthetic"
-
-
-@pytest.fixture
-def synthetic_labels() -> Path:
-    return ROOT / "data" / "synthetic" / "labels"
+def examples() -> Path:
+    return ROOT / "examples"

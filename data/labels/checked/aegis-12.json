@@ -1,0 +1,30 @@
+{
+  "trace_id": "aegis-12",
+  "clean": false,
+  "findings": [
+    {
+      "family": "redundant_action",
+      "steps": [
+        2,
+        6
+      ],
+      "description": "Add redundant steps via prompt injection",
+      "severity": "major",
+      "notes": "AEGIS injected FM-1.3 (prompt_injection)"
+    }
+  ],
+  "notes": "Injected AEGIS error (construction-verified). Not naturalistic gold.",
+  "annotator": "AEGIS injection plan (arXiv:2509.14295)",
+  "review": "injected",
+  "split": "checked",
+  "meta": {
+    "corpus": "aegis",
+    "license": "MIT",
+    "original_id": "GSM8K_gpt-4o-mini_dylan_8_2c90f7b0",
+    "original_label": "FM-1.3",
+    "label_kind": "injected",
+    "source_repository": "Fancylalala/AEGIS"
+  },
+  "source_benchmark": "AEGIS",
+  "gold_completeness": "injected_agents"
+}

@@ -13,7 +13,6 @@ import httpx
 
 from .config import Config
 from .config import cost_usd as price_of
-from .parsing import extract_json
 
 __all__ = [
     "LLMClient",
@@ -23,21 +22,22 @@ __all__ = [
     "ScriptedClient",
     "NullClient",
     "CallError",
+    "PaymentRequired",
     "LLMUnavailable",
-    "ResponseCache",
-    "extract_json",
-    "semantic_mode",
     "client_from_env",
-    "usage_tokens",
+    "load_env_files",
 ]
 
 
 def usage_tokens(usage: dict | None) -> tuple[int, int]:
-    """Prompt and completion counts, folding in reasoning tokens when omitted."""
     usage = usage or {}
     inp = int(usage.get("prompt_tokens") or usage.get("input_tokens") or 0)
     out = int(usage.get("completion_tokens") or usage.get("output_tokens") or 0)
-    details = usage.get("completion_tokens_details") or usage.get("output_tokens_details") or {}
+    details = (
+        usage.get("completion_tokens_details")
+        or usage.get("output_tokens_details")
+        or {}
+    )
     reasoning = 0
     for blob in (usage, details):
         if not isinstance(blob, dict):
@@ -55,6 +55,10 @@ def usage_tokens(usage: dict | None) -> tuple[int, int]:
 
 
 class CallError(RuntimeError):
+    pass
+
+
+class PaymentRequired(CallError):
     pass
 
 
@@ -84,18 +88,12 @@ class LLMClient:
         *,
         models: list[str],
         temperature: float,
-        max_tokens: int,
         stage: str,
         response_schema: dict | None = None,
         reasoning_effort: str = "",
+        max_tokens: int | None = None,
     ) -> LLMResponse:
         raise NotImplementedError
-
-
-def semantic_mode(client: LLMClient | None) -> str:
-    if client is None or not getattr(client, "available", True):
-        return "deterministic"
-    return "mock" if getattr(client, "is_mock", False) else "live"
 
 
 class ResponseCache:
@@ -133,7 +131,9 @@ class ResponseCache:
             self._mem[key] = value
             self.path.parent.mkdir(parents=True, exist_ok=True)
             with open(self.path, "a", encoding="utf-8") as fh:
-                fh.write(json.dumps({"key": key, "value": value}, ensure_ascii=False) + "\n")
+                fh.write(
+                    json.dumps({"key": key, "value": value}, ensure_ascii=False) + "\n"
+                )
 
 
 class OpenAICompatClient(LLMClient):
@@ -142,7 +142,7 @@ class OpenAICompatClient(LLMClient):
         api_key: str,
         base_url: str = "https://openrouter.ai/api/v1",
         cache: ResponseCache | None = None,
-        timeout: float = 300.0,
+        timeout: float = 900.0,
         extra_headers: dict[str, str] | None = None,
     ):
         self.api_key = api_key
@@ -158,26 +158,25 @@ class OpenAICompatClient(LLMClient):
         *,
         models: list[str],
         temperature: float,
-        max_tokens: int,
         stage: str,
         response_schema: dict | None = None,
         reasoning_effort: str = "",
+        max_tokens: int | None = None,
     ) -> LLMResponse:
         if not self.available:
             raise LLMUnavailable("no API key")
         last_err: Exception | None = None
         for model in models or ["anthropic/claude-opus-5"]:
-            payload = {
+            payload: dict[str, Any] = {
                 "model": model,
                 "messages": messages,
                 "temperature": temperature,
-                "max_tokens": max_tokens,
             }
+            if max_tokens:
+                payload["max_tokens"] = max_tokens
             if response_schema:
                 payload["response_format"] = {"type": "json_object"}
             if reasoning_effort:
-                # OpenRouter: effort OR max_tokens, not both. enabled keeps
-                # Opus 5 thinking on; exclude=false still bills reasoning tokens.
                 payload["reasoning"] = {
                     "effort": reasoning_effort,
                     "enabled": True,
@@ -203,13 +202,48 @@ class OpenAICompatClient(LLMClient):
                 **self.extra_headers,
             }
             t0 = time.monotonic()
+            data = None
+            timeout = httpx.Timeout(self.timeout, connect=30.0)
             try:
-                with httpx.Client(timeout=self.timeout) as client:
-                    resp = client.post(f"{self.base_url}/chat/completions", headers=headers, json=payload)
-                resp.raise_for_status()
-                data = resp.json()
+                with httpx.Client(timeout=timeout) as client:
+                    for attempt in range(4):
+                        try:
+                            resp = client.post(
+                                f"{self.base_url}/chat/completions",
+                                headers=headers,
+                                json=payload,
+                            )
+                            if resp.status_code == 402:
+                                raise PaymentRequired(
+                                    str(resp.status_code) + " " + resp.text[:200]
+                                )
+                            if (
+                                resp.status_code in {429, 500, 502, 503, 504}
+                                and attempt < 3
+                            ):
+                                time.sleep(2**attempt)
+                                continue
+                            resp.raise_for_status()
+                            data = resp.json()
+                            break
+                        except PaymentRequired:
+                            raise
+                        except httpx.HTTPStatusError as exc:
+                            last_err = exc
+                            break
+                        except (httpx.TimeoutException, httpx.TransportError) as exc:
+                            last_err = exc
+                            if attempt < 3:
+                                time.sleep(2**attempt)
+                                continue
+                            break
+            except PaymentRequired as exc:
+                last_err = exc
+                continue
             except Exception as exc:
                 last_err = exc
+                continue
+            if data is None:
                 continue
             latency = time.monotonic() - t0
             choice = (data.get("choices") or [{}])[0]
@@ -219,7 +253,11 @@ class OpenAICompatClient(LLMClient):
             used_model = data.get("model") or model
             billed = usage.get("cost")
             try:
-                cost = float(billed) if billed is not None else price_of(used_model, inp, out)
+                cost = (
+                    float(billed)
+                    if billed is not None
+                    else price_of(used_model, inp, out)
+                )
             except (TypeError, ValueError):
                 cost = price_of(used_model, inp, out)
             record = LLMResponse(
@@ -243,6 +281,8 @@ class OpenAICompatClient(LLMClient):
                     },
                 )
             return record
+        if isinstance(last_err, PaymentRequired):
+            raise last_err
         raise CallError(f"all models failed for stage {stage}: {last_err}")
 
 
@@ -251,12 +291,10 @@ class NullClient(LLMClient):
     is_mock = False
 
     def complete(self, *args, **kwargs) -> LLMResponse:
-        raise LLMUnavailable("deterministic-only client")
+        raise LLMUnavailable("no API key")
 
 
 class MockClient(LLMClient):
-    """Offline stub: valid empty JSON so the pipeline can run without a key."""
-
     available = True
     is_mock = True
 
@@ -266,25 +304,15 @@ class MockClient(LLMClient):
         *,
         models: list[str],
         temperature: float,
-        max_tokens: int,
         stage: str,
         response_schema: dict | None = None,
         reasoning_effort: str = "",
+        max_tokens: int | None = None,
     ) -> LLMResponse:
-        if stage == "derive":
-            content = json.dumps({"checks": []})
-        elif stage in {"agent_a", "agent_b", "evaluate"}:
-            content = json.dumps({"findings": []})
-        elif stage == "classify_errors":
-            content = json.dumps({"classifications": []})
-        elif stage == "falsify":
+        if stage == "judge":
             content = json.dumps({"verdicts": []})
-        elif stage == "critique":
-            content = json.dumps({"findings": []})
         else:
-            content = json.dumps(
-                {"verdicts": [{"index": 0, "verdict": "insufficient_evidence", "reason": "mock client"}]}
-            )
+            content = json.dumps({"checks": [], "findings": []})
         return LLMResponse(
             content=content,
             model="mock",
@@ -296,8 +324,6 @@ class MockClient(LLMClient):
 
 
 class ScriptedClient(LLMClient):
-    """Test double: call a user function with (stage, messages) and return JSON."""
-
     available = True
     is_mock = True
 
@@ -315,10 +341,10 @@ class ScriptedClient(LLMClient):
         *,
         models: list[str],
         temperature: float,
-        max_tokens: int,
         stage: str,
         response_schema: dict | None = None,
         reasoning_effort: str = "",
+        max_tokens: int | None = None,
     ) -> LLMResponse:
         payload = self.handler(stage, messages)
         content = payload if isinstance(payload, str) else json.dumps(payload)
@@ -354,7 +380,11 @@ def load_env_files() -> None:
                 os.environ[key] = value
 
 
-def client_from_env(cfg: Config | None = None, mock: bool = False, cache_path: str | Path | None = None) -> LLMClient:
+def client_from_env(
+    cfg: Config | None = None,
+    mock: bool = False,
+    cache_path: str | Path | None = None,
+) -> LLMClient:
     load_env_files()
     if mock:
         return MockClient()
@@ -366,10 +396,24 @@ def client_from_env(cfg: Config | None = None, mock: bool = False, cache_path: s
     )
     if not key:
         return NullClient()
-    base = os.environ.get("TRACEAUDIT_BASE_URL") or os.environ.get("OPENAI_BASE_URL") or "https://openrouter.ai/api/v1"
-    cache = ResponseCache(cache_path or Path(".cache") / "llm.jsonl") if cache_path is not False else None
+    base = (
+        os.environ.get("TRACEAUDIT_BASE_URL")
+        or os.environ.get("OPENAI_BASE_URL")
+        or "https://openrouter.ai/api/v1"
+    )
+    cache = (
+        ResponseCache(cache_path or Path(".cache") / "llm.jsonl")
+        if cache_path is not False
+        else None
+    )
     headers = {}
     if "openrouter.ai" in base:
-        headers["HTTP-Referer"] = "https://github.com/traceaudit/traceaudit"
         headers["X-Title"] = "traceaudit"
-    return OpenAICompatClient(api_key=key, base_url=base, cache=cache, extra_headers=headers)
+    timeout = float(getattr(cfg, "request_timeout_s", 900.0)) if cfg else 900.0
+    return OpenAICompatClient(
+        api_key=key,
+        base_url=base,
+        cache=cache,
+        extra_headers=headers,
+        timeout=timeout,
+    )

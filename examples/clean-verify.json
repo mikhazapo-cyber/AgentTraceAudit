@@ -1,0 +1,38 @@
+{
+  "trace_id": "clean-verify",
+  "source_format": "canonical",
+  "task": "Transfer 10 from ACC-1 to ACC-2 and report the new ACC-1 balance.",
+  "instructions": "After transfer_funds you must call get_balance on the source account and quote that figure. Do not invent balances.",
+  "tools": [
+    {
+      "name": "transfer_funds",
+      "description": "Move money between accounts",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "from_account": {"type": "string"},
+          "to_account": {"type": "string"},
+          "amount": {"type": "number"}
+        },
+        "required": ["from_account", "to_account", "amount"]
+      }
+    },
+    {
+      "name": "get_balance",
+      "description": "Current account balance",
+      "parameters": {
+        "type": "object",
+        "properties": {"account": {"type": "string"}},
+        "required": ["account"]
+      }
+    }
+  ],
+  "steps": [
+    {"index": 0, "kind": "message", "role": "user", "content": "Transfer 10 from ACC-1 to ACC-2 and tell me ACC-1's new balance."},
+    {"index": 1, "kind": "tool_call", "role": "assistant", "name": "transfer_funds", "arguments": {"from_account": "ACC-1", "to_account": "ACC-2", "amount": 10}},
+    {"index": 2, "kind": "tool_result", "role": "tool", "name": "transfer_funds", "content": "{\"status\": \"ok\", \"transferred\": 10}"},
+    {"index": 3, "kind": "tool_call", "role": "assistant", "name": "get_balance", "arguments": {"account": "ACC-1"}},
+    {"index": 4, "kind": "tool_result", "role": "tool", "name": "get_balance", "content": "{\"account\": \"ACC-1\", \"balance\": 90}"},
+    {"index": 5, "kind": "message", "role": "assistant", "content": "Transferred 10. ACC-1 now has 90."}
+  ]
+}

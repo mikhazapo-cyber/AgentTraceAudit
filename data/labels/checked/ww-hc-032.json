@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-hc-032",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        6
+      ],
+      "description": "Orchestrator: It provides incorrect instructions.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=Orchestrator; mistake_step=6",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "929b45f34805280d77c61d1e093e3d4e551d77ddb6ecd73552b12b1af286388d",
+    "original_label": "It provides incorrect instructions.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

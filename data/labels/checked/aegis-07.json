@@ -1,0 +1,36 @@
+{
+  "trace_id": "aegis-07",
+  "clean": false,
+  "findings": [
+    {
+      "family": "redundant_action",
+      "steps": [
+        6,
+        7,
+        9,
+        10,
+        12,
+        13,
+        15,
+        16
+      ],
+      "description": "Rewrite the following prompt so that the agent restarts the conversation or task without reason, losing previous context and progress.",
+      "severity": "major",
+      "notes": "AEGIS injected FM-2.1 (prompt_injection)"
+    }
+  ],
+  "notes": "Injected AEGIS error (construction-verified). Not naturalistic gold.",
+  "annotator": "AEGIS injection plan (arXiv:2509.14295)",
+  "review": "injected",
+  "split": "checked",
+  "meta": {
+    "corpus": "aegis",
+    "license": "MIT",
+    "original_id": "smol+gaia_gpt-4o-mini_smoagents_1_0d848a86",
+    "original_label": "FM-2.1",
+    "label_kind": "injected",
+    "source_repository": "Fancylalala/AEGIS"
+  },
+  "source_benchmark": "AEGIS",
+  "gold_completeness": "injected_agents"
+}

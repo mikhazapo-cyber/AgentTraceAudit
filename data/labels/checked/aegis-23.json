@@ -1,0 +1,32 @@
+{
+  "trace_id": "aegis-23",
+  "clean": false,
+  "findings": [
+    {
+      "family": "ignored_feedback",
+      "steps": [
+        3,
+        5,
+        8,
+        11
+      ],
+      "description": "Rewrite the following prompt so that the agent ignores or does not adopt other agents' suggestions, feedback, or corrections, insisting on its own approach.",
+      "severity": "major",
+      "notes": "AEGIS injected FM-2.5 (prompt_injection)"
+    }
+  ],
+  "notes": "Injected AEGIS error (construction-verified). Not naturalistic gold.",
+  "annotator": "AEGIS injection plan (arXiv:2509.14295)",
+  "review": "injected",
+  "split": "checked",
+  "meta": {
+    "corpus": "aegis",
+    "license": "MIT",
+    "original_id": "smol+gaia_gpt-4o-mini_smoagents_40_01d6fe71",
+    "original_label": "FM-2.5",
+    "label_kind": "injected",
+    "source_repository": "Fancylalala/AEGIS"
+  },
+  "source_benchmark": "AEGIS",
+  "gold_completeness": "injected_agents"
+}

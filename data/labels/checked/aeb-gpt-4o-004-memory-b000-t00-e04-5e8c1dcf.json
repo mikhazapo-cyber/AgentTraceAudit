@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-gpt-4o-004-memory-b000-t00-e04-5e8c1dcf",
+  "clean": false,
+  "findings": [
+    {
+      "family": "instruction_violation",
+      "steps": [
+        1
+      ],
+      "description": "constraint_ignorance by not including all required elements",
+      "severity": "major",
+      "notes": "AgentErrorBench step 1"
+    }
+  ],
+  "notes": "task_type=gaia; module=planning",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "GPT-4o_004_memory_b000_t00_e04-5e8c1dcf",
+    "original_label": "instruction_violation",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

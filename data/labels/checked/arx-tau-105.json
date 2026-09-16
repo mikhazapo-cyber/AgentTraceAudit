@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-105",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        43
+      ],
+      "description": "The assistant tries to modify the address after the modifying the pending order items which is not supported currently per the domain policy.",
+      "severity": "major",
+      "notes": "AgentRx category: Intent Not Supported"
+    }
+  ],
+  "notes": "The user requested to modify the address after modifying the pending order items sequentially which is not supported currently per the domain policy.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "105",
+    "original_label": "Intent Not Supported",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

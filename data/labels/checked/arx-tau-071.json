@@ -1,0 +1,39 @@
+{
+  "trace_id": "arx-tau-071",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        23
+      ],
+      "description": "At step 24, the task instruction did not specify the type of black lamp and since there are multiple black lamps available, it wont be possible to match the ground truth actions.",
+      "severity": "major",
+      "notes": "AgentRx category: Underspecified User Intent"
+    },
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        26
+      ],
+      "description": "Assistant prematurely called modify items tool on a pending order which locked the order and the user later on wasn't able to change the backpack that he wanted.",
+      "severity": "major",
+      "notes": "AgentRx category: Intent Plan Misalignment"
+    }
+  ],
+  "notes": "The task instruction did not specify the type of black lamp and since there are multiple black lamps available, it wont be possible to match the ground truth actions.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "71",
+    "original_label": "Underspecified User Intent; Intent Plan Misalignment",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

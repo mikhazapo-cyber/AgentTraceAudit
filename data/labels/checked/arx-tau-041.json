@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-041",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        16
+      ],
+      "description": "At step 17, the assistant agent modified the items in the pending order which locked it and hence cannot update the shipping address later, hence the order of tool calling should have been vice-versa.",
+      "severity": "major",
+      "notes": "AgentRx category: Intent Plan Misalignment"
+    }
+  ],
+  "notes": "Assistant modified the items in the pending order which locked it and hence cannot update the shipping address later, hence the order of tool calling should have been vice-versa.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "41",
+    "original_label": "Intent Plan Misalignment",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

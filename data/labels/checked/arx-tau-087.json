@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-087",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        36
+      ],
+      "description": "The assistant agent should have modified all the three pending order addresses but it only modified the first two pending order addresses and claimed that it completed all the updates.",
+      "severity": "major",
+      "notes": "AgentRx category: Intent Plan Misalignment"
+    }
+  ],
+  "notes": "The assitant came up with an incorrect plan and only modified two of the three pending order addresses as per the user request.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "87",
+    "original_label": "Intent Plan Misalignment",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

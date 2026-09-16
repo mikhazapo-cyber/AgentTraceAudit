@@ -1,8 +1,0 @@
-{
-  "trace_id": "clean-verify",
-  "clean": true,
-  "split": "synthetic",
-  "findings": [],
-  "notes": "Confirmation is required by the instructions, not an inefficiency.",
-  "annotator": "synthetic fixture"
-}

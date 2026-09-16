@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-014-chat-b000-t00-e14-1d03d2d8",
+  "clean": false,
+  "findings": [
+    {
+      "family": "unsupported_success",
+      "steps": [
+        7
+      ],
+      "description": "The agent didn't check if machine wash is met. The reflection is not able to recognize this correctly. It should check the product details to see if machine wash is met.",
+      "severity": "major",
+      "notes": "AgentErrorBench step 4"
+    }
+  ],
+  "notes": "task_type=webshop; module=reflection",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_014_chat_b000_t00_e14-1d03d2d8",
+    "original_label": "unsupported_success",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

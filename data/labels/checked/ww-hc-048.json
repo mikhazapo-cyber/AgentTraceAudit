@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-hc-048",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        4
+      ],
+      "description": "WebSurfer: The agent didn't find enough information to answer the question but directly gave the answer.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=WebSurfer; mistake_step=4",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf",
+    "original_label": "The agent didn't find enough information to answer the question but directly gave the answer.",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}

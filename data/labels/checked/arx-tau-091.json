@@ -1,0 +1,29 @@
+{
+  "trace_id": "arx-tau-091",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "error_class": "other_error",
+      "steps": [
+        34
+      ],
+      "description": "The user agent asked the assistant to also return the tablet from order #W3239882, however, this was not specified in the original task instruction.",
+      "severity": "major",
+      "notes": "AgentRx category: Underspecified User Intent"
+    }
+  ],
+  "notes": "The user agent's request was hallucinated as the returning of the tablet clearly did not align with the task instruction.",
+  "annotator": "AgentRx human annotators (arXiv:2602.02475)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agentrx",
+    "license": "CC-BY-4.0",
+    "original_id": "91",
+    "original_label": "Underspecified User Intent",
+    "label_kind": "human",
+    "source_repository": "microsoft/AgentRx"
+  },
+  "source_benchmark": "AgentRx tau_retail"
+}

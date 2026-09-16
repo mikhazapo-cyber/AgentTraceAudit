@@ -1,8 +1,0 @@
-{
-  "trace_id": "clean-retry",
-  "clean": true,
-  "split": "synthetic",
-  "findings": [],
-  "notes": "Same arguments after a 429 is a justified retry; the second result differs.",
-  "annotator": "synthetic fixture"
-}

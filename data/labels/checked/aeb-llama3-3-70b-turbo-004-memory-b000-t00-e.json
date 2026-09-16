@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-llama3-3-70b-turbo-004-memory-b000-t00-e",
+  "clean": false,
+  "findings": [
+    {
+      "family": "instruction_violation",
+      "steps": [
+        1
+      ],
+      "description": "Not enough reasoning based on the constraint",
+      "severity": "major",
+      "notes": "AgentErrorBench step 1"
+    }
+  ],
+  "notes": "task_type=gaia; module=planning",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Llama3.3-70B-Turbo_004_memory_b000_t00_e03-21a3a421",
+    "original_label": "instruction_violation",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "trace_id": "aeb-qwen3-8b-016-memory-b001-t00-e06-71f7759",
+  "clean": false,
+  "findings": [
+    {
+      "family": "unsupported_success",
+      "steps": [
+        7
+      ],
+      "description": "Get the wrong information for the answer think it is success",
+      "severity": "major",
+      "notes": "AgentErrorBench step 4"
+    }
+  ],
+  "notes": "task_type=gaia; module=reflection",
+  "annotator": "AgentErrorBench annotators (arXiv:2509.25370)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "agenterrorbench",
+    "license": "unspecified (public HF mirror davide221/agenterrorbench)",
+    "original_id": "Qwen3-8B_016_memory_b001_t00_e06-71f77595",
+    "original_label": "unsupported_success",
+    "label_kind": "human",
+    "source_repository": "davide221/agenterrorbench"
+  }
+}

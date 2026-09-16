@@ -1,444 +1,611 @@
+"""Two high-power auditors in parallel, then one judge.
+
+Each auditor derives task-specific checks and locates findings. The judge
+confirms what to keep and assigns families. No mechanical lane, no extra
+review passes.
+"""
+
 from __future__ import annotations
 
-import hashlib
-import json
 import re
 import time
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
+from typing import NamedTuple
 
-from .adjudicate import falsify_candidates, judge_findings
-from .classify import classify_error_results
-from .config import Config
-from .critique import critique_review, should_critique
-from .derive import derive_checks, split_lanes
-from .detect import run_agent
-from .evidence import info_available_at
-from .llm import LLMClient
-from .obligations import compile_obligations, extend_from_derived, obligation_context
-from .prompts import AGENT_A_SYSTEM, AGENT_B_SYSTEM, OBLIGATION_SYSTEM
-from .quotes import (
-    annotate_evidence_sources,
-    excerpt_in_source,
-    locatable,
-    supporting_instruction,
-    unique_evidence,
+from .config import Config, StageConfig
+from .llm import CallError, LLMClient, LLMResponse, PaymentRequired
+from .pack import info_available_at, pack_char_budget, pack_judge, pack_trace
+from .parsing import extract_json
+from .prompts import ANALYST_A, ANALYST_B, JUDGE
+from .schemas import (
+    FAMILIES,
+    FAMILY_DEFAULT_CLASS,
+    CallRecord,
+    CandidateFinding,
+    DerivedCheck,
+    Evidence,
+    Finding,
+    TraceResult,
+    Verdict,
+    clamp_confidence,
+    normalize_class_and_family,
 )
-from .schemas import CandidateFinding, Finding, TraceResult, Verification
-from .structural import analyze as run_heuristics
-from .structural import logical_tool_name, objective_findings
-from .verify import inspect, quick_check
 
 
-def _input_hash(trace) -> str:
-    try:
-        blob = trace.model_dump_json()
-    except Exception:
-        blob = json.dumps(trace, default=str, sort_keys=True)
-    return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
+class ParsedVerdict(NamedTuple):
+    verdict: Verdict
+    reason: str
+    family: str
+    error_class: str
+    confidence: int | None
 
 
-def _instruction_support(trace, cand: CandidateFinding) -> str:
-    existing = str(cand.meta.get("rule_ref") or "").strip()
-    if existing and excerpt_in_source(existing, trace.task, trace.instructions):
-        return existing
+def _record(stage: str, resp: LLMResponse) -> CallRecord:
+    return CallRecord(
+        stage=stage,
+        model=resp.model,
+        input_tokens=resp.input_tokens,
+        output_tokens=resp.output_tokens,
+        cost_usd=resp.cost_usd,
+        latency_s=resp.latency_s,
+        cached=resp.cached,
+    )
+
+
+def _norm(text: str) -> str:
+    return " ".join((text or "").lower().split())
+
+
+def quote_in_step(trace, step_idx: int, quote: str) -> bool:
+    if not quote or not (0 <= step_idx < len(trace.steps)):
+        return False
+    hay = _norm(trace.steps[step_idx].text())
+    needle = _norm(quote)
+    if not needle:
+        return False
+    if needle in hay:
+        return True
+    return len(needle) >= 24 and needle[:80] in hay
+
+
+def local_proof(trace, cand: CandidateFinding) -> tuple[bool, str]:
+    if not cand.steps:
+        return False, "no step cited"
     for idx in cand.steps:
         if not (0 <= idx < len(trace.steps)):
-            continue
-        step = trace.steps[idx]
-        if step.kind != "tool_call":
-            continue
-        excerpt = supporting_instruction(trace, logical_tool_name(step) or step.name)
-        if excerpt:
-            return excerpt
-    return existing
+            return False, f"step {idx} is not in the trace"
+    if not cand.evidence:
+        return False, "no evidence quotes"
+    if not any(quote_in_step(trace, e.step, e.quote) for e in cand.evidence):
+        return False, "quoted evidence does not appear in the cited steps"
+    if (
+        cand.family in {"redundant_action", "ignored_feedback"}
+        and not (cand.alternative or "").strip()
+    ):
+        return False, "inefficiency needs a cheaper alternative that existed then"
+    return True, "steps and quotes check out"
 
 
-def _enrich_candidate(trace, cand: CandidateFinding) -> None:
-    annotate_evidence_sources(trace, cand.evidence)
-    cand.evidence = unique_evidence(cand.evidence)
-    if not (cand.available_info or "").strip() and cand.steps:
-        cand.available_info = info_available_at(trace, min(cand.steps))
-    support = _instruction_support(trace, cand)
-    if support:
-        cand.meta["rule_ref"] = support
+def _family(raw: object, fallback: str = "other") -> str:
+    value = str(raw or fallback)
+    return value if value in FAMILIES else fallback
+
+
+def parse_checks(parsed: object, auditor: str) -> list[DerivedCheck]:
+    items = parsed.get("checks") if isinstance(parsed, dict) else []
+    out: list[DerivedCheck] = []
+    for i, item in enumerate(items or [], 1):
+        if not isinstance(item, dict):
+            continue
+        desc = str(item.get("description") or item.get("condition") or "").strip()
+        if not desc:
+            continue
+        refs = item.get("source_refs") or []
+        if isinstance(refs, str):
+            refs = [refs]
+        out.append(
+            DerivedCheck(
+                check_id=str(item.get("check_id") or f"{auditor}-{i}"),
+                family=_family(item.get("family")),  # type: ignore[arg-type]
+                description=desc[:400],
+                condition=str(item.get("condition") or "")[:400],
+                justified_when=str(item.get("justified_when") or "")[:400],
+                source_refs=[str(r)[:300] for r in refs if r][:6],
+                source=auditor,
+            )
+        )
+    return out
+
+
+def parse_findings(parsed: object, auditor: str) -> list[CandidateFinding]:
+    items = parsed.get("findings") if isinstance(parsed, dict) else parsed
+    if not isinstance(items, list):
+        items = []
+    out: list[CandidateFinding] = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        decision = str(item.get("decision") or "violated").lower()
+        if decision in {"not_violated", "ok", "rejected"}:
+            continue
+        if decision not in {"violated", "insufficient_evidence"}:
+            decision = "violated"
+        desc = str(item.get("description") or item.get("explanation") or "").strip()
+        if not desc:
+            continue
+        mapped = normalize_class_and_family(item.get("error_class"), item.get("family"))
+        if mapped is None:
+            continue
+        error_class, family = mapped
+        steps = item.get("steps") or []
+        if isinstance(steps, int):
+            steps = [steps]
+        steps = [int(s) for s in steps if isinstance(s, (int, float))]
+        evidence = []
+        for ev in item.get("evidence") or []:
+            if isinstance(ev, dict) and "step" in ev:
+                evidence.append(
+                    Evidence(
+                        step=int(ev["step"]), quote=str(ev.get("quote") or "")[:400]
+                    )
+                )
+        omitted_conf = (
+            item.get("confidence", None) is None or item.get("confidence") == ""
+        )
+        out.append(
+            CandidateFinding(
+                check_id=str(item.get("check_id") or ""),
+                family=family,  # type: ignore[arg-type]
+                error_class=error_class,
+                description=desc[:500],
+                condition=str(item.get("explanation") or item.get("rule_ref") or "")[
+                    :700
+                ],
+                steps=steps,
+                evidence=evidence,
+                severity=item.get("severity")
+                if item.get("severity") in ("critical", "major", "minor")
+                else "major",
+                confidence=clamp_confidence(item.get("confidence"), 70),
+                alternative=str(item.get("alternative") or ""),
+                available_info=str(item.get("available_info") or ""),
+                auditor=auditor,
+                meta={
+                    "decision": decision,
+                    "rule_ref": str(item.get("rule_ref") or ""),
+                    "confidence_omitted": omitted_conf,
+                },
+            )
+        )
+    return out
+
+
+def parse_verdicts(parsed: object, n: int) -> list[ParsedVerdict]:
+    items = parsed.get("verdicts") if isinstance(parsed, dict) else parsed
+    if not isinstance(items, list):
+        items = []
+    by_index: dict[int, dict] = {}
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        try:
+            idx = int(item.get("index"))
+        except (TypeError, ValueError):
+            continue
+        by_index[idx] = item
+    out: list[ParsedVerdict] = []
+    for i in range(n):
+        item = by_index.get(i) or {}
+        raw = str(item.get("verdict") or "insufficient_evidence").lower()
+        if raw not in {"confirmed", "rejected", "insufficient_evidence"}:
+            raw = "insufficient_evidence"
+        if "confidence" in item and item.get("confidence") not in (None, ""):
+            conf: int | None = clamp_confidence(item.get("confidence"), 80)
+        else:
+            conf = None
+        out.append(
+            ParsedVerdict(
+                raw,  # type: ignore[arg-type]
+                str(item.get("reason") or ""),
+                _family(item.get("family"), ""),
+                str(item.get("error_class") or "").strip(),
+                conf,
+            )
+        )
+    return out
+
+
+def _resolve_class_family(
+    cand: CandidateFinding,
+    judge_family: str,
+    judge_class: str,
+) -> tuple[str, str]:
+    if judge_class:
+        mapped = normalize_class_and_family(judge_class, judge_family or cand.family)
+        if mapped is not None:
+            return mapped
+    if judge_family:
+        mapped = normalize_class_and_family("", judge_family)
+        if mapped is not None:
+            return mapped
+    mapped = normalize_class_and_family(cand.error_class, cand.family)
+    if mapped is None:
+        family = cand.family if cand.family in FAMILIES else "other"
+        return FAMILY_DEFAULT_CLASS.get(family, "other_error"), family
+    return mapped
 
 
 def _to_finding(
     trace,
     cand: CandidateFinding,
-    status: str,
+    status: Verdict,
     reason: str,
-    verification: Verification | None = None,
+    family: str = "",
+    error_class: str = "",
+    confidence: int | None = None,
 ) -> Finding:
-    _enrich_candidate(trace, cand)
-    ver = verification or Verification()
-    ver.adjudicator = status if status in {"confirmed", "insufficient_evidence"} else "rejected"
-    if reason and (not ver.reason or ver.reason == "hard-verify passed"):
-        ver.reason = reason
+    if not (cand.available_info or "").strip() and cand.steps:
+        cand.available_info = info_available_at(trace, min(cand.steps))
+    cls, fam = _resolve_class_family(cand, family, error_class)
+    if confidence is None:
+        confidence = 80 if status == "confirmed" else cand.confidence
     return Finding(
         finding_id="",
         trace_id=trace.trace_id,
-        family=cand.family,
+        family=fam,  # type: ignore[arg-type]
+        error_class=cls,
         description=cand.description,
         explanation=cand.condition or reason,
         steps=cand.steps,
         evidence=cand.evidence,
         severity=cand.severity,
-        status=status,  # type: ignore[arg-type]
+        status=status,
         adjudication_reason=reason,
-        confidence=cand.confidence,
+        confidence=clamp_confidence(confidence, cand.confidence),
         check_id=cand.check_id,
-        source=cand.source,
         alternative=cand.alternative,
-        rule_ref=str(cand.meta.get("rule_ref") or cand.condition),
+        rule_ref=str(cand.meta.get("rule_ref") or ""),
         available_info=cand.available_info,
+        auditor=cand.auditor,
         meta=cand.meta,
-        verification=ver,
     )
 
 
-def _same_event(a: Finding | CandidateFinding, b: Finding | CandidateFinding) -> bool:
-    sa, sb = set(a.steps), set(b.steps)
-    if not (sa and sb and sa & sb):
+def apply_confidence_threshold(finding: Finding, min_confidence: int) -> Finding:
+    if finding.status == "confirmed" and finding.confidence < min_confidence:
+        finding.status = "insufficient_evidence"
+        note = f"confidence {finding.confidence} below {min_confidence}"
+        finding.adjudication_reason = (
+            f"{finding.adjudication_reason} ({note})"
+            if finding.adjudication_reason
+            else note
+        )
+    return finding
+
+
+# Judge named a concrete look-alike / disproof. Do not override that abstention.
+_PEER_BLOCK_REASON = re.compile(
+    r"(?i)("
+    r"justified|"
+    r"\bretr(?:y|ied)\b|"
+    r"playbook|"
+    r"already (?:in|appears?|present|quoted)|"
+    r"appeared in the (?:question|user|evidence|trace)|"
+    r"string already|"
+    r"in the (?:user )?(?:question|prompt)\b|"
+    r"not a (?:hard )?rule|"
+    r"preferred (?:skill|order)|"
+    r"extra verification|"
+    r"search, not|"
+    r"changed (?:the )?(?:request|arguments?|target)|"
+    r"look[- ]alike|"
+    r"does not apply|"
+    r"not an? (?:error|inefficiency|violation|finding)|"
+    r"\bdisproof\b|"
+    r"\breject(?:ed|ion)?\b"
+    r")"
+)
+_PEER_CONFIRM_MIN_CONF = 70
+
+
+def _judge_reason_blocks_peer(reason: str) -> bool:
+    return bool(_PEER_BLOCK_REASON.search(reason or ""))
+
+
+def _judge_reason_thin(reason: str) -> bool:
+    text = " ".join((reason or "").split())
+    if _judge_reason_blocks_peer(text):
         return False
-    if a.family == b.family:
-        return True
-    if a.check_id and a.check_id == b.check_id:
-        return True
+    return len(text) < 40
+
+
+def _peer_supports(
+    cand: CandidateFinding,
+    peers: list[CandidateFinding],
+    verdicts: list[ParsedVerdict],
+    trace,
+    cand_row: ParsedVerdict,
+) -> bool:
+    """Promote an abstention only when both auditors independently proved it.
+
+    Same parent family, overlapping steps, both quotes pass local_proof,
+    neither proposal was rejected, and the judge did not name a concrete
+    justification or disproof. Empty/thin judge reasons may promote;
+    a longer reason may promote only if both auditors are confident.
+    """
+    if cand.meta.get("decision") != "violated":
+        return False
+    if cand_row.verdict == "rejected":
+        return False
+    if _judge_reason_blocks_peer(cand_row.reason):
+        return False
+    mine = set(cand.steps)
+    for peer, row in zip(peers, verdicts):
+        if peer is cand or peer.auditor == cand.auditor:
+            continue
+        if row.verdict == "rejected":
+            continue
+        if peer.family != cand.family:
+            continue
+        if peer.meta.get("decision") != "violated":
+            continue
+        if not (mine & set(peer.steps)):
+            continue
+        if _judge_reason_blocks_peer(row.reason):
+            continue
+        ok, _ = local_proof(trace, peer)
+        if not ok:
+            continue
+        if _judge_reason_thin(cand_row.reason) or (
+            cand.confidence >= _PEER_CONFIRM_MIN_CONF
+            and peer.confidence >= _PEER_CONFIRM_MIN_CONF
+        ):
+            return True
     return False
 
 
-def _rule_key(f: Finding) -> str:
-    rule = (f.rule_ref or "").strip().lower()
-    return re.sub(r"[^a-z0-9]+", " ", rule).strip() if len(rule) >= 20 else ""
-
-
-def _dedupe_same_rule(findings: list[Finding]) -> list[Finding]:
-    """Collapse one rule violated at overlapping steps into one finding.
-
-    Two auditors filing the same skipped policy check under instruction_violation
-    and incorrect_tool_use describe one event; reporting both costs a false
-    positive. The instruction family wins, because the shared evidence is a rule.
-    """
+def _merge(findings: list[Finding]) -> list[Finding]:
     confirmed = [f for f in findings if f.status == "confirmed"]
     rest = [f for f in findings if f.status != "confirmed"]
     kept: list[Finding] = []
-    for f in confirmed:
-        key = _rule_key(f)
-        partner = None
-        if key:
-            partner = next(
-                (
-                    k
-                    for k in kept
-                    if _rule_key(k) == key
-                    and set(k.steps) & set(f.steps)
-                    # Two mechanical findings are distinct proven events.
-                    and not (k.source == "deterministic" and f.source == "deterministic")
-                ),
-                None,
-            )
+    for finding in confirmed:
+        partner = next(
+            (
+                k
+                for k in kept
+                if k.family == finding.family and set(k.steps) & set(finding.steps)
+            ),
+            None,
+        )
         if partner is None:
-            kept.append(f)
+            kept.append(finding)
             continue
-        winner, loser = partner, f
-        if f.family == "instruction_violation" and partner.family != "instruction_violation":
-            winner, loser = f, partner
-            kept[kept.index(partner)] = f
-        winner.steps = sorted(set(winner.steps) | set(loser.steps))
-        winner.meta["merged_duplicate_of_rule"] = loser.family
+        winner, extra = (
+            (finding, partner)
+            if finding.confidence > partner.confidence
+            else (partner, finding)
+        )
+        if winner is finding:
+            kept[kept.index(partner)] = winner
+        winner.steps = sorted(set(winner.steps) | set(extra.steps))
+        if extra.description and extra.description not in winner.description:
+            winner.description = (winner.description + "; " + extra.description)[:700]
+        if extra.alternative and not winner.alternative:
+            winner.alternative = extra.alternative
+        if extra.evidence:
+            seen = {(e.step, e.quote) for e in winner.evidence}
+            winner.evidence = list(winner.evidence) + [
+                e for e in extra.evidence if (e.step, e.quote) not in seen
+            ]
     return kept + rest
 
 
-def _merge(findings: list[Finding]) -> list[Finding]:
-    rank = {
-        "incorrect_tool_use": 0,
-        "evidence_contradiction": 1,
-        "instruction_violation": 2,
-        "ignored_feedback": 3,
-        "redundant_action": 4,
-        "unsupported_success": 5,
-        "other": 6,
-    }
-    confirmed = [f for f in findings if f.status == "confirmed"]
-    other = [f for f in findings if f.status != "confirmed"]
-    kept: list[Finding] = []
-    for f in sorted(confirmed, key=lambda x: (rank.get(x.family, 9), -(x.confidence or 0))):
-        partner = next((k for k in kept if _same_event(f, k)), None)
-        if partner is None:
-            kept.append(f)
-            continue
-        partner.steps = sorted(set(partner.steps) | set(f.steps))
-        if f.description not in partner.description:
-            partner.description = (partner.description + "; " + f.description)[:700]
-        if f.alternative and not partner.alternative:
-            partner.alternative = f.alternative
-    return kept + other
-
-
-def _verification_from_quick(trace, cand: CandidateFinding, verdict: str, reason: str) -> Verification:
-    """Record what verification actually found, not what the verdict implies.
-
-    `family_gate` has to be the gate's own answer. Deriving it from the verdict
-    made every confirmed finding claim a gate it may never have passed, which is
-    the one field a reviewer would check first.
-    """
-    ver = inspect(trace, cand)
-    ver.adjudicator = verdict if verdict in {"confirmed", "insufficient_evidence"} else "rejected"
-    ver.reason = reason
-    return ver
-
-
-def _mechanical_lane(
-    trace,
-    det_cands: list[CandidateFinding],
-    findings: list[Finding],
-    rejected: list,
-) -> None:
-    """Confirm mechanical catches on hard verify alone, with no model veto.
-
-    Runs before the agents so their proposals de-duplicate against proven events
-    instead of being re-filed under a second family.
-    """
-    for cand in det_cands:
-        if not locatable(trace, cand):
-            rejected.append(cand)
-            continue
-        ver = inspect(trace, cand)
-        if ver.passed and ver.mechanical:
-            findings.append(_to_finding(trace, cand, "confirmed", "mechanical hard-verify", ver))
-        else:
-            rejected.append(cand)
-
-
-def _overlaps_confirmed(cand: CandidateFinding, confirmed: list[Finding]) -> Finding | None:
-    """Return a proven finding sharing a step with this candidate, in any family."""
-    steps = set(cand.steps)
-    if not steps:
-        return None
-    for f in confirmed:
-        if steps & set(f.steps):
-            return f
-    return None
+def _complete(
+    client: LLMClient,
+    stage: str,
+    system: str,
+    user: str,
+    stage_cfg: StageConfig,
+) -> tuple[object, CallRecord]:
+    resp = client.complete(
+        [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        models=stage_cfg.models,
+        temperature=stage_cfg.temperature,
+        stage=stage,
+        response_schema={"type": "json_object"},
+        reasoning_effort=stage_cfg.reasoning_effort,
+    )
+    try:
+        parsed = extract_json(resp.content)
+    except ValueError:
+        parsed = {}
+    return parsed, _record(stage, resp)
 
 
 def analyze_trace(
     trace,
     cfg: Config,
     client: LLMClient,
-    input_hash: str = "",
     cfg_hash: str = "",
-    on_stage=None,
+    on_stage: Callable[[str], None] | None = None,
 ) -> TraceResult:
-    stage = on_stage or (lambda label, detail="": None)
     t0 = time.monotonic()
-    calls = []
+    calls: list[CallRecord] = []
     degraded: list[str] = []
     rejected: list[CandidateFinding] = []
-    ih = input_hash or _input_hash(trace)
 
-    spend = 0.0
-    if getattr(client, "available", True) and cfg.classify_errors:
-        stage("classify errors")
-        ccalls = classify_error_results(trace, cfg, client)
-        calls += ccalls
-        spend += sum(c.cost_usd for c in ccalls)
+    def note(stage: str) -> None:
+        if on_stage:
+            on_stage(stage)
 
-    flags = run_heuristics(trace)
-    det_cands = objective_findings(trace, flags)
-    stage("structural", f"{len(flags.flags)} flag(s) · {len(det_cands)} objective finding(s)")
-
-    findings: list[Finding] = []
-
-    def finish(status, checks=None, pending=None, error=""):
-        merged = _merge(_dedupe_same_rule(findings)) if cfg.merge_similar else findings
-        merged = sorted(merged, key=lambda f: (f.steps[0] if f.steps else 10**9, f.family))
-        for n, f in enumerate(merged, 1):
-            f.finding_id = f"{trace.trace_id}-F{n:02d}"
+    def finish(
+        status: str,
+        findings: list[Finding] | None = None,
+        checks: list[DerivedCheck] | None = None,
+        error: str = "",
+    ) -> TraceResult:
+        merged = _merge(findings or []) if cfg.merge_similar else list(findings or [])
+        merged = sorted(
+            merged, key=lambda f: (f.steps[0] if f.steps else 10**9, f.family)
+        )
+        for n, finding in enumerate(merged, 1):
+            finding.finding_id = f"{trace.trace_id}-F{n:02d}"
         return TraceResult(
             trace_id=trace.trace_id,
-            status=status,
+            status=status,  # type: ignore[arg-type]
             error=error,
             findings=merged,
             rejected=rejected,
             checks=checks or [],
-            pending_checks=pending or [],
             calls=calls,
             degraded=degraded,
-            input_hash=ih,
-            cfg_hash=cfg_hash,
             latency_s=time.monotonic() - t0,
-            meta={"flags": flags.to_dict()},
+            meta={"cfg_hash": cfg_hash, "n_steps": len(trace.steps)},
         )
-
-    # Mechanical lane first: proven events, no model in the loop.
-    _mechanical_lane(trace, det_cands, findings, rejected)
-    mechanical_confirmed = [f for f in findings if f.status == "confirmed"]
-    stage("mechanical", f"{len(mechanical_confirmed)} confirmed")
 
     if not getattr(client, "available", True):
-        return finish("deterministic_only", pending=[c.check_id for c in det_cands])
+        return finish("error", error="no API key")
 
-    stage("derive instructions")
-    checks, dcalls = derive_checks(trace, flags, cfg, client)
-    calls += dcalls
-    spend += sum(c.cost_usd for c in dcalls)
-    obligation_lane_checks, residual_checks = split_lanes(checks)
-    stage("derived", f"{len(obligation_lane_checks)} obligation · {len(residual_checks)} residual")
+    auditor_chars = pack_char_budget(cfg.target_mean_usd, 0.0, copies=2)
+    instr_chars = min(cfg.max_instruction_chars, max(4000, auditor_chars // 8))
+    pack = pack_trace(trace, auditor_chars, instr_chars)
+    note("auditors")
 
-    # Hard abort only. target_mean_usd is a target, not a stop.
-    if cfg.cost_cap_usd > 0 and spend >= cfg.cost_cap_usd:
-        degraded.append("agents skipped: per-trace cost cap reached after derive")
-        return finish("budget_exhausted", checks=checks)
+    def run_auditor(stage: str, system: str, stage_cfg: StageConfig):
+        parsed, rec = _complete(client, stage, system, pack, stage_cfg)
+        return parse_checks(parsed, stage), parse_findings(parsed, stage), rec
 
-    stage("parallel agents")
-    obligations = extend_from_derived(
-        trace, compile_obligations(trace), obligation_lane_checks
-    )
-    # Both lanes always run. With no quotable obligations, agent A falls back to
-    # its generalist brief so the trace still gets a correctness auditor.
-    focused = bool(obligations and obligation_lane_checks)
-    lane_a_checks = obligation_lane_checks or residual_checks
-    lane_b_checks = residual_checks or obligation_lane_checks
-    a_secondary = [c for c in residual_checks if c not in lane_a_checks]
-    b_secondary = [c for c in obligation_lane_checks if c not in lane_b_checks]
-
-    def _agent_a():
-        return run_agent(
-            trace,
-            lane_a_checks,
-            flags,
-            cfg,
-            client,
-            stage="agent_a",
-            system=OBLIGATION_SYSTEM if focused else AGENT_A_SYSTEM,
-            stage_cfg=cfg.agent_a,
-            extra_context=obligation_context(trace, obligations) if focused else "",
-            secondary_checks=a_secondary,
-        )
-
-    def _agent_b():
-        return run_agent(
-            trace,
-            lane_b_checks,
-            flags,
-            cfg,
-            client,
-            stage="agent_b",
-            system=AGENT_B_SYSTEM,
-            stage_cfg=cfg.agent_b,
-            secondary_checks=b_secondary,
-        )
+    checks_a: list[DerivedCheck] = []
+    checks_b: list[DerivedCheck] = []
+    found_a: list[CandidateFinding] = []
+    found_b: list[CandidateFinding] = []
+    auditor_ok = {"agent_a": False, "agent_b": False}
+    paywall = False
 
     with ThreadPoolExecutor(max_workers=2) as pool:
-        fut_a = pool.submit(_agent_a)
-        fut_b = pool.submit(_agent_b)
+        fut_a = pool.submit(run_auditor, "agent_a", ANALYST_A, cfg.agent_a)
+        fut_b = pool.submit(run_auditor, "agent_b", ANALYST_B, cfg.agent_b)
         try:
-            found_a, calls_a = fut_a.result()
+            checks_a, found_a, rec_a = fut_a.result()
+            calls.append(rec_a)
+            auditor_ok["agent_a"] = True
+        except PaymentRequired as exc:
+            degraded.append(f"agent_a failed: {exc}")
+            paywall = True
         except Exception as exc:
-            found_a, calls_a = [], []
             degraded.append(f"agent_a failed: {exc}")
         try:
-            found_b, calls_b = fut_b.result()
+            checks_b, found_b, rec_b = fut_b.result()
+            calls.append(rec_b)
+            auditor_ok["agent_b"] = True
+        except PaymentRequired as exc:
+            degraded.append(f"agent_b failed: {exc}")
+            paywall = True
         except Exception as exc:
-            found_b, calls_b = [], []
             degraded.append(f"agent_b failed: {exc}")
 
-    calls += calls_a + calls_b
-    spend += sum(c.cost_usd for c in calls_a + calls_b)
-    stage("agents", f"{len(found_a)} from A · {len(found_b)} from B")
+    checks = checks_a + checks_b
+    proposals = found_a + found_b
+    spend = sum(c.cost_usd for c in calls)
 
-    proposals: list[CandidateFinding] = []
-    for cand in list(found_a) + list(found_b):
-        proven = _overlaps_confirmed(cand, mechanical_confirmed)
-        if proven is None:
-            proposals.append(cand)
+    if not proposals:
+        note("done")
+        if paywall and not any(auditor_ok.values()):
+            return finish(
+                "error",
+                checks=checks,
+                error="provider payment required; add credits and retry",
+            )
+        return finish("ok", checks=checks)
+
+    if cfg.cost_cap_usd > 0 and spend >= cfg.cost_cap_usd:
+        degraded.append("judge skipped: per-trace cost cap reached after the auditors")
+        note("done")
+        return finish("budget_exhausted", checks=checks)
+
+    note("judge")
+    judge_chars = pack_char_budget(cfg.target_mean_usd, spend, copies=1)
+    judge_instr = min(cfg.max_instruction_chars, max(3000, judge_chars // 8))
+    judge_pack = pack_judge(trace, checks, proposals, judge_chars, judge_instr)
+    try:
+        parsed, rec_j = _complete(client, "judge", JUDGE, judge_pack, cfg.judge)
+        calls.append(rec_j)
+        verdicts = parse_verdicts(parsed, len(proposals))
+    except (CallError, Exception) as exc:
+        degraded.append(f"judge failed: {exc}")
+        note("done")
+        return finish(
+            "model_error",
+            findings=[
+                _to_finding(
+                    trace, c, "insufficient_evidence", "judge did not return a verdict"
+                )
+                for c in proposals
+            ],
+            checks=checks,
+            error=str(exc),
+        )
+
+    findings: list[Finding] = []
+    for cand, row in zip(proposals, verdicts):
+        verdict, reason, family = row.verdict, row.reason, row.family
+        if verdict == "rejected":
+            rejected.append(cand)
             continue
-        cand.meta["dropped_as_duplicate_of"] = proven.finding_id or proven.check_id
-        cand.meta["dropped_reason"] = (
-            f"steps overlap a proven {proven.family} finding at {proven.steps}"
-        )
-        rejected.append(cand)
-    dropped = len(found_a) + len(found_b) - len(proposals)
-    if dropped:
-        stage("dedupe", f"{dropped} proposal(s) already proven mechanically")
-
-    confirmed_llm: list[tuple[CandidateFinding, Finding]] = []
-
-    if proposals:
-        stage("judge")
-        verdicts, jcalls = judge_findings(trace, checks, proposals, cfg, client, spend)
-        calls += jcalls
-        spend += sum(c.cost_usd for c in jcalls)
-
-        stage("quick check")
-        for cand, (verdict, reason) in zip(proposals, verdicts):
-            if verdict == "rejected":
-                rejected.append(cand)
-                continue
-            if verdict == "insufficient_evidence":
-                ver = _verification_from_quick(trace, cand, verdict, reason)
-                findings.append(_to_finding(trace, cand, "insufficient_evidence", reason, ver))
-                continue
-            qc_verdict, qc_reason = quick_check(trace, cand)
-            ver = _verification_from_quick(trace, cand, qc_verdict, qc_reason)
-            ver.adjudicator = "confirmed" if qc_verdict == "confirmed" else qc_verdict
-            if qc_verdict == "confirmed":
-                finding = _to_finding(trace, cand, "confirmed", reason or qc_reason, ver)
-                findings.append(finding)
-                if cand.source != "deterministic":
-                    confirmed_llm.append((cand, finding))
-            elif qc_verdict == "insufficient_evidence":
-                findings.append(
-                    _to_finding(trace, cand, "insufficient_evidence", qc_reason, ver)
+        if verdict == "insufficient_evidence":
+            ok, proof = local_proof(trace, cand)
+            if (
+                ok
+                and cand.meta.get("decision") == "violated"
+                and _peer_supports(cand, proposals, verdicts, trace, row)
+            ):
+                peer_conf = (
+                    row.confidence if row.confidence is not None else cand.confidence
+                )
+                finding = _to_finding(
+                    trace,
+                    cand,
+                    "confirmed",
+                    reason or "both auditors located this and quotes check out",
+                    family,
+                    row.error_class,
+                    peer_conf,
                 )
             else:
-                rejected.append(cand)
-
-    if should_critique(cfg, spend, checks, findings, proposals):
-        stage("critique")
-        extra, ccalls = critique_review(
-            trace, checks, proposals, findings, cfg, client, spend
-        )
-        calls += ccalls
-        spend += sum(c.cost_usd for c in ccalls)
-        for cand in extra:
-            proven = _overlaps_confirmed(cand, [f for f in findings if f.status == "confirmed"])
-            if proven is not None:
-                cand.meta["dropped_as_duplicate_of"] = proven.finding_id or proven.check_id
-                rejected.append(cand)
-                continue
-            qc_verdict, qc_reason = quick_check(trace, cand)
-            ver = _verification_from_quick(trace, cand, qc_verdict, qc_reason)
-            ver.adjudicator = "confirmed" if qc_verdict == "confirmed" else qc_verdict
-            if qc_verdict == "confirmed":
-                finding = _to_finding(trace, cand, "confirmed", qc_reason, ver)
-                findings.append(finding)
-                confirmed_llm.append((cand, finding))
-            elif qc_verdict == "insufficient_evidence":
-                findings.append(
-                    _to_finding(trace, cand, "insufficient_evidence", qc_reason, ver)
+                finding = _to_finding(
+                    trace,
+                    cand,
+                    "insufficient_evidence",
+                    reason or proof,
+                    family,
+                    row.error_class,
+                    row.confidence,
                 )
-            else:
-                rejected.append(cand)
+            findings.append(apply_confidence_threshold(finding, cfg.min_confidence))
+            continue
+        ok, proof = local_proof(trace, cand)
+        if ok:
+            finding = _to_finding(
+                trace,
+                cand,
+                "confirmed",
+                reason or proof,
+                family,
+                row.error_class,
+                row.confidence,
+            )
+        else:
+            finding = _to_finding(
+                trace,
+                cand,
+                "insufficient_evidence",
+                proof,
+                family,
+                row.error_class,
+                row.confidence,
+            )
+        findings.append(apply_confidence_threshold(finding, cfg.min_confidence))
 
-    if confirmed_llm and cfg.falsify_enabled:
-        stage("falsify")
-        fverdicts, fcalls = falsify_candidates(
-            trace, [c for c, _ in confirmed_llm], cfg, client, spend
-        )
-        calls += fcalls
-        spend += sum(c.cost_usd for c in fcalls)
-        for (_cand, finding), (fverdict, freason) in zip(confirmed_llm, fverdicts):
-            if fverdict != "disproved":
-                continue
-            finding.status = "insufficient_evidence"
-            finding.adjudication_reason = freason or finding.adjudication_reason
-            finding.verification.adjudicator = "insufficient_evidence"
-            finding.verification.reason = freason or "falsified"
-            finding.meta["falsified"] = True
-
-    status = "ok"
-    if cfg.cost_cap_usd > 0 and spend > cfg.cost_cap_usd:
-        degraded.append(f"spent ${spend:.2f} above cap ${cfg.cost_cap_usd:.2f}")
-    return finish(status, checks=checks)
+    note("done")
+    return finish("ok", findings=findings, checks=checks)

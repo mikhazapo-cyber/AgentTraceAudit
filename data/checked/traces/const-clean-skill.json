@@ -1,0 +1,89 @@
+{
+ "trace_id": "clean-skill",
+ "source_format": "canonical",
+ "task": "Find the open orders for jane@example.com.",
+ "instructions": "Preferred: call lookup_user first, then list_orders with the user id. You may also call search_orders with the email. Acknowledge briefly. Optional: add an emoji. Completing the ask by an allowed path is enough.",
+ "tools": [
+  {
+   "name": "lookup_user",
+   "description": "Look up a user id by email",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "email"
+    ]
+   }
+  },
+  {
+   "name": "list_orders",
+   "description": "List orders for a user id",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   }
+  },
+  {
+   "name": "search_orders",
+   "description": "Search orders by email",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "email"
+    ]
+   }
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "kind": "message",
+   "role": "user",
+   "content": "Open orders for jane@example.com?"
+  },
+  {
+   "index": 1,
+   "kind": "tool_call",
+   "role": "assistant",
+   "name": "search_orders",
+   "arguments": {
+    "email": "jane@example.com"
+   }
+  },
+  {
+   "index": 2,
+   "kind": "tool_result",
+   "role": "tool",
+   "name": "search_orders",
+   "content": "{\"orders\": [{\"id\": \"ORD-88\", \"status\": \"open\"}]}"
+  },
+  {
+   "index": 3,
+   "kind": "message",
+   "role": "assistant",
+   "content": "Jane has one open order: ORD-88."
+  }
+ ],
+ "meta": {
+  "corpus": "construction",
+  "license": "MIT (this repo)",
+  "original_id": "clean-skill.json",
+  "label_kind": "construction"
+ }
+}

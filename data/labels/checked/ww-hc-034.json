@@ -1,0 +1,27 @@
+{
+  "trace_id": "ww-hc-034",
+  "clean": false,
+  "findings": [
+    {
+      "family": "other",
+      "steps": [
+        4
+      ],
+      "description": "WebSurfer: WebSurfer returned general and unrelated information due to poorly refined queries and failed to identify the specific version of OpenCV where Mask-RCNN support was added. This failure caused subsequent steps to proceed based on incorrect or incomplete data, leading to the wrong final answer.",
+      "severity": "major",
+      "notes": "Who&When has who/when/reason only; no source taxonomy, so family=other."
+    }
+  ],
+  "notes": "mistake_agent=WebSurfer; mistake_step=4",
+  "annotator": "Who&When human annotators (arXiv:2505.00212)",
+  "review": "human",
+  "split": "checked",
+  "meta": {
+    "corpus": "whowhen",
+    "license": "MIT",
+    "original_id": "56137764-b4e0-45b8-9c52-1866420c3df5",
+    "original_label": "WebSurfer returned general and unrelated information due to poorly refined queries and failed to identify the specific version of OpenCV where Mask-RCNN support",
+    "label_kind": "human",
+    "source_repository": "Kevin355/Who_and_When"
+  }
+}
